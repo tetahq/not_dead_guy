@@ -1,72 +1,115 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
-describe("NotDeadGuy", function () {
-  it("Token counter must be zero at initial state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
+async function getContract() {
+  const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
+  const notDeadGuy = await NotDeadGuy.deploy();
+  await notDeadGuy.deployed();
+  
+  return notDeadGuy;
+}
+
+describe("Not Dead Guy", function () {
+  
+  describe("Initial State", function() {
+    it("Token counter must be zero at initial state", async function () {
+      const ndg = await getContract();
     
-    expect(await notDeadGuy.totalSupply()).to.equal(0);
+      expect(await ndg.totalSupply()).to.equal(0);
+    });
+  
+    it("Market should opened at initial state", async function () {
+      const ndg = await getContract();
+    
+      expect(await ndg.isMarketOpened()).to.equal(true);
+    });
+  
+    it("Presale should closed at initial state", async function () {
+      const ndg = await getContract();
+    
+      expect(await ndg.isPreSaleOpened()).to.equal(false);
+    });
+  
+    it("Public sale should closed at initial state", async function () {
+      const ndg = await getContract();
+    
+      expect(await ndg.isPublicSaleOpened()).to.equal(false);
+    });
   });
   
-  it("Market should closed at initial state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
+  describe("Mutations", function () {
+    it("Owner should update market state", async function () {
+      const ndg = await getContract();
     
-    expect(await notDeadGuy.isMarketOpened()).to.equal(false);
-  });
+      expect(await ndg.isMarketOpened()).to.equal(true);
+    
+      const setMarketStateTx = await ndg.changeMarketState(false);
+      await setMarketStateTx.wait();
+    
+      expect(await ndg.isMarketOpened()).to.equal(false);
+    });
   
-  it("Owner should update market state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
+    it("Owner should update pre sale state", async function () {
+      const ndg = await getContract();
     
-    expect(await notDeadGuy.isMarketOpened()).to.equal(false);
+      expect(await ndg.isPreSaleOpened()).to.equal(false);
     
-    const setMarketStateTx = await notDeadGuy.changeMarketState(true);
-    await setMarketStateTx.wait();
-    expect(await notDeadGuy.isMarketOpened()).to.equal(true);
-  });
+      const setPreSaleStateTx = await ndg.changePreSaleState(true);
+      await setPreSaleStateTx.wait();
+    
+      expect(await ndg.isPreSaleOpened()).to.equal(true);
+    });
   
-  it("Presale should closed at initial state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
+    it("Owner should update public sale state when pre sale not active", async function () {
+      const ndg = await getContract();
     
-    expect(await notDeadGuy.isPreSaleOpened()).to.equal(false);
-  });
+      expect(await ndg.isPublicSaleOpened()).to.equal(false);
+    
+      const setPublicSaleStateTx = await ndg.changePublicSaleState(true);
+      await setPublicSaleStateTx.wait();
+      expect(await ndg.isPublicSaleOpened()).to.equal(true);
+    });
   
-  it("Owner should update pre sale state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
-    
-    expect(await notDeadGuy.isPreSaleOpened()).to.equal(false);
-    
-    const setPreSaleStateTx = await notDeadGuy.changePreSaleState(true);
-    await setPreSaleStateTx.wait();
-    expect(await notDeadGuy.isPreSaleOpened()).to.equal(true);
-  });
+    it("Owner shouldn't update public sale state to opened when pre sale is active", async function () {
+      const ndg = await getContract();
   
-  it("Public sale should closed at initial state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
-    
-    expect(await notDeadGuy.isPublicSaleOpened()).to.equal(false);
-  });
+      expect(await ndg.isPreSaleOpened()).to.equal(false);
+      expect(await ndg.isPublicSaleOpened()).to.equal(false);
   
-  it("Owner should update public sale state", async function () {
-    const NotDeadGuy = await ethers.getContractFactory("NotDeadGuy");
-    const notDeadGuy = await NotDeadGuy.deploy();
-    await notDeadGuy.deployed();
+      const setPreSaleStateTx = await ndg.changePreSaleState(true);
+      await setPreSaleStateTx.wait();
+  
+      expect(await ndg.isPreSaleOpened()).to.equal(true);
     
-    expect(await notDeadGuy.isPublicSaleOpened()).to.equal(false);
+      try {
+        const setPublicSaleStateTx = await ndg.changePublicSaleState(true);
+        await setPublicSaleStateTx.wait();
+      }
+      catch {}
+      finally {
+        expect(await ndg.isPublicSaleOpened()).to.equal(false);
+      }
+    });
+  
+    it("Owner shouldn't update pre sale state to opened when public sale is active", async function () {
+      const ndg = await getContract();
     
-    const setPublicSaleStateTx = await notDeadGuy.changePublicSaleState(true);
-    await setPublicSaleStateTx.wait();
-    expect(await notDeadGuy.isPublicSaleOpened()).to.equal(true);
+      expect(await ndg.isPreSaleOpened()).to.equal(false);
+      expect(await ndg.isPublicSaleOpened()).to.equal(false);
+    
+      const setPublicSaleStateTx = await ndg.changePublicSaleState(true);
+      await setPublicSaleStateTx.wait();
+    
+      expect(await ndg.isPublicSaleOpened()).to.equal(true);
+      
+      try {
+        const setPreSaleStateTx = await ndg.changePreSaleState(true);
+        await setPreSaleStateTx.wait();
+      }
+      catch {}
+      finally {
+        expect(await ndg.isPreSaleOpened()).to.equal(false);
+      }
+    });
   });
 });
