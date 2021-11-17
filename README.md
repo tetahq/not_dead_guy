@@ -17,20 +17,20 @@ After opening your wallet, you will need to load enough balance into it. You can
 Note: When sending the balance, please note the gas fee payable when you mint the NFT.
 for the current gas fee https://etherscan.io/gatracker, You can use this address.
 
-#About Presale
+# About Presale
 
 
-###Advantages
+### Advantages
 
 Only 3000 NotDeadGuy NFTs will be available for presale. Although there is no person limit, the presale will stop when 3000 NFT’s are sold. The presale will only be open for 1 hour. You will have the highest revenue share when you are among the first to buy before all NFTs are sold out.
 
-###What are the presale registration requirements?
+### What are the presale registration requirements?
 
 To register for the presale, you must have at least 1 NFT balance (0.1 eth) in your wallet. To be part of the whitelist, the balance of eth equal to the amount of NFT you want to buy must be deposited into the prepayment system within 24 hours. You will have coupons with the amount you deposited and you will be able to convert these coupons to NFT after the public sale is over.
 
 Those who do not deposit at least 1 NFT balance to the prepayment system will lose their right to the whitelist.
 
-###How to register for presale?
+### How to register for presale?
 
 The right to participate in the pre-sale is given to people on a list we call a whitelist.
 To join the Whitelist;
