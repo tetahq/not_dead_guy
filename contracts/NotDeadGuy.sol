@@ -34,7 +34,15 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
         Progress tokenConvertState;
     }
     
+    struct EarningInfo {
+        uint128 earningsFromFirstOwnerOfNFT;
+        uint128 earningsFromSharings;
+        uint128 earningsFromWeeklyLeaderboard;
+        uint128 totalEarnings;
+    }
+    
     mapping(address => PreSaleSlot) private _presaleWhitelist;
+    
     SystemProgresses public progresses;
     
     constructor() ERC721("Not Dead Guy", "NDG") {
@@ -182,4 +190,6 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
         
         return (addedCount, failedCount);
     }
+    
+    
 }
