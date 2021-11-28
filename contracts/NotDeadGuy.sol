@@ -10,15 +10,17 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 /// @custom:security-contact security@tetahq.com
 contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
+    using Address for address;
+    using Strings for uint256;
     using Counters for Counters.Counter;
     
     Counters.Counter private _tokenIdCounter;
     
     struct PreSaleSlot {
-        uint8 freeMintSlots;
-        uint8 usedFreeMintSlots;
-        uint8 saleSlots;
-        uint8 usedSaleSlots;
+        uint16 freeMintSlots;
+        uint16 usedFreeMintSlots;
+        uint16 saleSlots;
+        uint16 usedSaleSlots;
     }
     
     enum Progress {
@@ -34,18 +36,55 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
         Progress tokenConvertState;
     }
     
-    struct EarningInfo {
-        uint128 earningsFromFirstOwnerOfNFT;
-        uint128 earningsFromSharings;
-        uint128 earningsFromWeeklyLeaderboard;
-        uint128 totalEarnings;
+    struct Shares {
+        address shareHolder1Address;
+        address shareHolder2Address;
+        address developer1Address;
+        address developer2Address;
+        address developer3Address;
+    
+        uint16 shareHolder1Cut;
+        uint16 shareHolder2Cut;
+        uint16 developer1Cut;
+        uint16 developer2Cut;
+        
+        uint16 developer1MarketCut;
+        uint16 developer2MarketCut;
+        
+        uint16 firstMinterMarketCut;
+        uint16 nftHolderCut;
+        uint16 weeklyMarketSaleEventCut;
+        uint16 systemCut;
+    }
+    
+    struct Constants {
+        uint256 sketchPrice;
+        uint256 minimumMarketSalePrice;
+        uint16 maxTokenAmount;
+        uint16 maxBuyAtSameTime;
     }
     
     mapping(address => PreSaleSlot) private _presaleWhitelist;
+    mapping(address => uint16) private _sketchCounters;
+    mapping(uint256 => uint256) private _marketPrices;
+    
+    Shares private _shares;
+    Constants private _constants;
+    
+    uint256 private _marketSystemCut;
     
     SystemProgresses public progresses;
     
+    uint16 public totalSketchCount;
+    
     constructor() ERC721("Not Dead Guy", "NDG") {
+        totalSketchCount = 0;
+        _marketSystemCut = 0;
+    
+        _constants = Constants(0.088 ether, 0.001 ether, 10000, 20);
+    
+        _shares = Shares(address(0x48F10bE806CBD87E725Ca85Fe94555f126BA156D), address(0x127b46b71a3c385A50e57f8E29c68483084c51f6), address(0xBB1a24B07e832579b801206b77865D3944427db1), address(0x8B894a78E6f7739eEc7Ca32772F31a54361240C1), address(0x3C2158ab53c030dBA9345E6f7bb55276944aFBA7), 5, 10, 35, 25, 33, 34, 1, 2, 2, 3 );
+        
         progresses = SystemProgresses(true, Progress.NOT_STARTED, Progress.NOT_STARTED, Progress.NOT_STARTED);
     }
     
@@ -53,10 +92,12 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
         return "https://notdeadguy.com/token/";
     }
     
-    function safeMint(address to) public onlyOwner {
+    function safeMint(address to) public onlyOwner returns(uint256) {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
+        
+        return tokenId;
     }
     
     // The following functions are overrides required by Solidity.
@@ -70,82 +111,75 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
     
     // Custom codes
     function openMarket() public onlyOwner {
-        require(!progresses.isMarketOpenForTrading, "Market already open for trading.");
+        require(!progresses.isMarketOpenForTrading, "MARKET_ALREADY_OPENED"); // Market already open for trading.
         
         progresses.isMarketOpenForTrading = true;
     }
     
     function closeMarket() public onlyOwner {
-        require(progresses.isMarketOpenForTrading, "Market already closed for trading.");
+        require(progresses.isMarketOpenForTrading, "MARKET_ALREADY_CLOSED"); // Market already closed for trading.
         
         progresses.isMarketOpenForTrading = false;
     }
     
     function startPreSale() external onlyOwner {
-        require(progresses.publicSaleState == Progress.NOT_STARTED, "Public sale is active or finished. You can not change pre sale state!");
-        require(progresses.tokenConvertState == Progress.NOT_STARTED, "Token converting is active or finished. You can not change pre sale state!");
-        require(progresses.preSaleState == Progress.NOT_STARTED, "You can not start pre sale. Because it is already active or finished.");
+        require(progresses.preSaleState == Progress.NOT_STARTED, "PRESALE_ACTIVE_OR_FINISHED"); // Pre sale state is already active or finished.
 
         console.log("Pre sale started!");
-        progresses.preSaleState == Progress.ACTIVE;
+        progresses.preSaleState = Progress.ACTIVE;
     }
     
     function finishPreSale() external onlyOwner {
-        require(progresses.publicSaleState == Progress.NOT_STARTED, "Public sale is active or finished. You can not change pre sale state!");
-        require(progresses.tokenConvertState == Progress.NOT_STARTED, "Token converting is active or finished. You can not change pre sale state!");
-        require(progresses.preSaleState == Progress.ACTIVE, "You can not finish the pre sale. Because it is already finished or not started.");
+        require(progresses.preSaleState == Progress.ACTIVE, "PRESALE_FINISHED_OR_NOT_STARTED"); // Pre sale is already finished or not started.
     
         console.log("Pre sale finished!");
-        progresses.preSaleState == Progress.FINISHED;
+        progresses.preSaleState = Progress.FINISHED;
     }
     
     function startPublicSale() external onlyOwner {
-        require(progresses.preSaleState == Progress.FINISHED, "You must complete pre sale process before starting public sale.");
-        require(progresses.tokenConvertState == Progress.NOT_STARTED, "Token converting is active or finished. You can not change public sale state!");
-        require(progresses.publicSaleState == Progress.NOT_STARTED, "You can not start public sale. Because it is already active or finished.");
+        require(progresses.preSaleState == Progress.FINISHED, "COMPLETE_PRE_SALE_FIRST"); // You must complete pre sale process before starting public sale.
+        require(progresses.publicSaleState == Progress.ACTIVE, "PUBLIC_SALE_NOT_ACTIVE"); // You can not start public sale. Because it is already active or finished.
     
         console.log("Public sale started!");
-        progresses.publicSaleState == Progress.ACTIVE;
+        progresses.publicSaleState = Progress.ACTIVE;
     }
     
-    function finishPreSale() external onlyOwner {
-        require(progresses.preSaleState == Progress.FINISHED, "You must complete pre sale process before starting public sale.");
-        require(progresses.tokenConvertState == Progress.NOT_STARTED, "Token converting is active or finished. You can not change public sale state!");
-        require(progresses.preSaleState == Progress.ACTIVE, "You can not finish the public sale. Because it is already finished or not started.");
+    function finishPublicSale() external onlyOwner {
+        require(progresses.publicSaleState == Progress.ACTIVE, "START_PUBLIC_SALE_FIRST"); // Start pre sale first
         
-        console.log("Public sale finished!");
-        progresses.publicSaleState == Progress.FINISHED;
+        console.log("public sale finished!");
+        progresses.publicSaleState = Progress.FINISHED;
     }
     
     function startTokenConverting() external onlyOwner {
-        require(progresses.preSaleState == Progress.FINISHED, "You can not start token converting phase before pre sale finished.");
-        require(progresses.publicSaleState == Progress.FINISHED, "You can not start token converting phase before public sale finished.");
-        require(progresses.tokenConvertState == Progress.NOT_STARTED, "Token converting is active or finished. You can not change token converting state to active!");
+        require(progresses.preSaleState == Progress.FINISHED, "PRESALE_NOT_FINISHED"); // You can not start token converting phase before pre sale finished.
+        require(progresses.publicSaleState == Progress.FINISHED, "PUBLIC_SALE_NOT_FINISHED"); // You can not start token converting phase before public sale finished.
+        require(progresses.tokenConvertState == Progress.NOT_STARTED, "START_TOKEN_CONVERT_FIRST"); // Token converting is active or finished. You can not change token converting state to active!
         
         progresses.tokenConvertState = Progress.ACTIVE;
     }
     
     function finishTokenConverting() external onlyOwner {
-        require(progresses.preSaleState == Progress.FINISHED, "You can not start token converting phase before pre sale finished.");
-        require(progresses.publicSaleState == Progress.FINISHED, "You can not start token converting phase before public sale finished.");
-        require(progresses.tokenConvertState == Progress.ACTIVE, "Token converting is finished or not started. You can not change token converting state to finished!");
+        require(progresses.preSaleState == Progress.FINISHED, "PRESALE_NOT_FINISHED"); // You can not start token converting phase before pre sale finished.
+        require(progresses.publicSaleState == Progress.FINISHED, "PUBLIC_SALE_NOT_FINISHED"); // You can not start token converting phase before public sale finished.
+        require(progresses.tokenConvertState == Progress.ACTIVE, "TOKEN_CONVERT_NOT_ACTIVE"); // Token converting is finished or not started. You can not change token converting state to finished!
         
         progresses.tokenConvertState = Progress.FINISHED;
     }
     
     function safeAddWalletToPreSaleWhitelist(address walletAddress, uint8 saleSlots, uint8 freeMintSlots) external onlyOwner {
-        require(walletAddress != address(0x0), "Void address can not be used as address");
-        require(freeMintSlots + saleSlots > 0, "Some slots need to assigned to wallet");
+        require(walletAddress != address(0x0), "YOU_CANNOT_USE_VOID_ADDRESS"); // "Void address can not be used as address"
+        require(freeMintSlots + saleSlots > 0, "ADD_SOME_SLOTS"); // "Some slots need to assigned to wallet"
     
-        PreSaleSlot slot = _presaleWhitelist[walletAddress];
+        PreSaleSlot storage slot = _presaleWhitelist[walletAddress];
         
-        require(slot.freeMintSlots == 0 && slot.saleSlots == 0 && slot.usedFreeMintSlots == 0 && slot.usedSaleSlots == 0, "Wallet already in list");
+        require(slot.freeMintSlots == 0 && slot.saleSlots == 0 && slot.usedFreeMintSlots == 0 && slot.usedSaleSlots == 0, "WALLET_ALREADY_IN_LIST"); // "Wallet already in list"
 
         _presaleWhitelist[walletAddress] = PreSaleSlot(freeMintSlots, 0, saleSlots, 0);
         console.log("Wallet added to the pre sale whitelist.");
     }
     
-    function unsafeAddWalletToPreSaleWhitelist(address walletAddress, uint8 saleSlots, uint8 freeMintSlots) external onlyOwner returns(bool) {
+    function unsafeAddWalletToPreSaleWhitelist(address walletAddress, uint8 saleSlots, uint8 freeMintSlots) public onlyOwner returns(bool) {
         if(walletAddress == address(0x0)) {
             console.log("Void address can not be used as address");
             return false;
@@ -156,7 +190,7 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
             return false;
         }
         
-        PreSaleSlot slot = _presaleWhitelist[walletAddress];
+        PreSaleSlot storage slot = _presaleWhitelist[walletAddress];
         
         if(slot.freeMintSlots != 0 || slot.saleSlots != 0 || slot.usedFreeMintSlots != 0 || slot.usedSaleSlots != 0) {
             console.log("Wallet already in list");
@@ -173,7 +207,7 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
     }
     
     function bulkAddWalletsToPreSaleWhitelist(address[] memory walletAddresses, uint8[] memory saleSlotsOfWallets, uint8[] memory freeMintSlotsOfWallets) external onlyOwner returns(uint32 succeeded, uint32 failed) {
-        require(walletAddresses.length == saleSlotsOfWallets.length && walletAddresses.length == freeMintSlots.length && walletAddresses.length > 0, "Length of wallets must above 0 and parameter lengths must be same.");
+        require(walletAddresses.length == saleSlotsOfWallets.length && walletAddresses.length == freeMintSlotsOfWallets.length && walletAddresses.length > 0, "WALLETS_LIST_EMPTY"); // "Length of wallets must above 0 and parameter lengths must be same."
         
         uint32 addedCount = 0;
         uint32 failedCount = 0;
@@ -191,5 +225,144 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
         return (addedCount, failedCount);
     }
     
+    function claimFreeSketchesAtPresale(uint16 howMany) external returns(uint16) {
+        require(progresses.preSaleState == Progress.ACTIVE, "FREE_MINTING_ONLY_PRESALE"); // Free minting only available at pre sale.
+        require(howMany <= _constants.maxBuyAtSameTime, "MAX_20_SKETCH_AT_SAME_TIME");
+        
+        PreSaleSlot storage presaleSlot = _presaleWhitelist[msg.sender];
+        require(presaleSlot.freeMintSlots - presaleSlot.usedFreeMintSlots >= howMany, "NO_PRESALE_FREE_MINT_SLOTS"); // You don't have that many free mint slots.
     
+        presaleSlot.usedFreeMintSlots = presaleSlot.usedFreeMintSlots + howMany;
+        _sketchCounters[msg.sender] = _sketchCounters[msg.sender] + howMany;
+        totalSketchCount = totalSketchCount + howMany;
+        
+        return _sketchCounters[msg.sender];
+    }
+    
+    function claimPresaleSketchesAtPresale(uint16 howMany) external payable returns(uint16) {
+        require(progresses.preSaleState == Progress.ACTIVE, "FREE_MINTING_ONLY_PRESALE"); // Pre sale minting only available at pre sale.
+        require(howMany <= _constants.maxBuyAtSameTime, "MAX_20_SKETCH_AT_SAME_TIME");
+        require(msg.value == howMany * _constants.sketchPrice, "INVALID_PRICE");
+        
+        PreSaleSlot storage presaleSlot = _presaleWhitelist[msg.sender];
+        require(presaleSlot.saleSlots - presaleSlot.usedSaleSlots >= howMany, "NO_PRESALE_MINT_SLOTS"); // You don't have that many pre sale mint slots.
+    
+        presaleSlot.usedSaleSlots = presaleSlot.usedSaleSlots + howMany;
+        _sketchCounters[msg.sender] = _sketchCounters[msg.sender] + howMany;
+        totalSketchCount = totalSketchCount + howMany;
+    
+        return _sketchCounters[msg.sender];
+    }
+    
+    function claimSketchesAtPublicSale(uint16 howMany) external payable returns(uint16) {
+        require(progresses.publicSaleState == Progress.ACTIVE, "FREE_MINTING_ONLY_PUBLIC_SALE"); // Minting only available at public sale
+        require(howMany <= _constants.maxBuyAtSameTime, "MAX_20_SKETCH_AT_SAME_TIME");
+        require(totalSketchCount + howMany < _constants.maxTokenAmount, "SKETCH_LIMIT_EXCEEDED");
+        require(msg.value == howMany * _constants.sketchPrice, "INVALID_PRICE");
+    
+        _sketchCounters[msg.sender] = _sketchCounters[msg.sender] + howMany;
+        totalSketchCount = totalSketchCount + howMany;
+    
+        return _sketchCounters[msg.sender];
+    }
+    
+    function claimTokens(uint16 howMany) external returns(uint256[] memory) {
+        require(progresses.tokenConvertState == Progress.ACTIVE, "CONVERT_SHOULD_BE_ACTIVE"); // Converting should be active.
+        require(howMany <= _constants.maxBuyAtSameTime, "MAX_20_MINT_AT_SAME_TIME");
+        require(_sketchCounters[msg.sender] >= howMany, "NOT_ENOUGH_SKETCHES");
+    
+        _sketchCounters[msg.sender] = _sketchCounters[msg.sender] - howMany;
+        totalSketchCount = totalSketchCount - howMany;
+
+        uint256[] memory boughtTokens = new uint256[](howMany);
+        
+        for(uint16 id = 0; id < howMany; id++) {
+            uint256 tokenId = safeMint(msg.sender);
+            boughtTokens[id] = tokenId;
+        }
+        
+        return boughtTokens;
+    }
+    
+    function splitShares() external onlyOwner {
+        require(address(this).balance > 0, "NOT_ENOUGH_BALANCE_IN_CONTRACT");
+        uint256 totalBalance = address(this).balance;
+        
+        uint256 shareholder1Cut = totalBalance / 100 * _shares.shareHolder1Cut;
+        Address.sendValue(payable(_shares.shareHolder1Address), shareholder1Cut);
+    
+        uint256 shareholder2Cut = totalBalance / 100 * _shares.shareHolder2Cut;
+        Address.sendValue(payable(_shares.shareHolder2Address), shareholder2Cut);
+    
+        uint256 developer1Cut = totalBalance / 100 * _shares.developer1Cut;
+        Address.sendValue(payable(_shares.developer1Address), developer1Cut);
+    
+        uint256 developer2Cut = totalBalance / 100 * _shares.developer2Cut;
+        Address.sendValue(payable(_shares.developer2Address), developer2Cut);
+    
+        Address.sendValue(payable(_shares.developer3Address), address(this).balance);
+    }
+    
+    function splitMarketShares() external onlyOwner {
+        require(progresses.publicSaleState == Progress.FINISHED && progresses.tokenConvertState != Progress.FINISHED, "FOR_SHARE_HOLDERS_SECURITY");
+        require(_marketSystemCut > 0, "NOT_ENOUGH_BALANCE_IN_CONTRACT");
+        
+        uint256 totalSent = 0;
+        
+        uint256 developer1Cut = _marketSystemCut / 100 * _shares.developer1MarketCut;
+        Address.sendValue(payable(_shares.developer1Address), developer1Cut);
+        totalSent = totalSent + developer1Cut;
+    
+        uint256 developer2Cut = _marketSystemCut / 100 * _shares.developer2MarketCut;
+        Address.sendValue(payable(_shares.developer2Address), developer2Cut);
+        totalSent = totalSent + developer2Cut;
+    
+        Address.sendValue(payable(_shares.developer2Address), _marketSystemCut - totalSent);
+        _marketSystemCut = 0;
+    }
+    
+    function setMarketPrice(uint256 tokenId, uint256 price) external {
+        require(ownerOf(tokenId) == msg.sender, "INVALID_OWNER");
+        require(price == 0 || price >= _constants.minimumMarketSalePrice, "PRICE_MUST_0_OR_MARKETMIN");
+
+        _marketPrices[tokenId] = price;
+    }
+    
+    function buyFromMarket(uint256 tokenId) external payable {
+        require(ownerOf(tokenId) != msg.sender, "ALREADY_OWNER_OF_NFT");
+        require(_marketPrices[tokenId] > 0, "ITEM_NOT_IN_SALE");
+        require(msg.value == _marketPrices[tokenId], "PAY_EXACT_PRICE");
+    
+        uint256 totalPaidAmount = msg.value;
+        uint256 shareCuts = 0;
+        
+        uint256 firstMinterCut = totalPaidAmount / 100 * _shares.firstMinterMarketCut;
+        shareCuts = shareCuts + firstMinterCut;
+    
+        uint256 systemCut = totalPaidAmount / 100 * _shares.systemCut;
+        shareCuts = shareCuts + systemCut;
+        _marketSystemCut = _marketSystemCut + systemCut;
+    
+        uint256 weeklyMarketSaleEventFundCut = totalPaidAmount / 100 * _shares.weeklyMarketSaleEventCut;
+        shareCuts = shareCuts + weeklyMarketSaleEventFundCut;
+    
+        uint256 nftHoldersCut = totalPaidAmount / 100 * _shares.nftHolderCut;
+        shareCuts = shareCuts + nftHoldersCut;
+        
+        address previousHolder = ownerOf(tokenId);
+        transferFrom(previousHolder, msg.sender, tokenId);
+        _marketPrices[tokenId] = 0;
+        Address.sendValue(payable(previousHolder), totalPaidAmount - shareCuts);
+    }
+    
+    function sendRewardsTo(address payable to, uint256 amount) public onlyOwner {
+        require(progresses.tokenConvertState == Progress.FINISHED, "SERVER_SEND_REWARD_EVENT");
+        Address.sendValue(to, amount);
+    }
+    
+    // Views
+    function myPresaleSlot() public view returns(uint16 freeMintSlots, uint16 usedFreeMintSlots, uint16 saleSlots, uint16 usedSaleSlots) {
+        PreSaleSlot storage slot = _presaleWhitelist[msg.sender];
+        return (slot.freeMintSlots, slot.usedFreeMintSlots, slot.saleSlots, slot.usedSaleSlots);
+    }
 }

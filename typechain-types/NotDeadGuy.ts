@@ -12,6 +12,7 @@ import {
   BaseContract,
   ContractTransaction,
   Overrides,
+  PayableOverrides,
   CallOverrides,
 } from "ethers";
 import { BytesLike } from "@ethersproject/bytes";
@@ -28,29 +29,47 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
   functions: {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "changeMarketState(bool)": FunctionFragment;
-    "changePreSaleState(bool)": FunctionFragment;
-    "changePublicSaleState(bool)": FunctionFragment;
+    "bulkAddWalletsToPreSaleWhitelist(address[],uint8[],uint8[])": FunctionFragment;
+    "buyFromMarket(uint256)": FunctionFragment;
+    "claimFreeSketchesAtPresale(uint16)": FunctionFragment;
+    "claimPresaleSketchesAtPresale(uint16)": FunctionFragment;
+    "claimSketchesAtPublicSale(uint16)": FunctionFragment;
+    "claimTokens(uint16)": FunctionFragment;
+    "closeMarket()": FunctionFragment;
+    "finishPreSale()": FunctionFragment;
+    "finishPublicSale()": FunctionFragment;
+    "finishTokenConverting()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "isMarketOpened()": FunctionFragment;
-    "isPreSaleOpened()": FunctionFragment;
-    "isPublicSaleOpened()": FunctionFragment;
+    "myPresaleSlot()": FunctionFragment;
     "name()": FunctionFragment;
+    "openMarket()": FunctionFragment;
     "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
+    "progresses()": FunctionFragment;
+    "removeWalletFromPreSaleWhitelist(address)": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
+    "safeAddWalletToPreSaleWhitelist(address,uint8,uint8)": FunctionFragment;
     "safeMint(address)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
+    "sendRewardsTo(address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
+    "setMarketPrice(uint256,uint256)": FunctionFragment;
+    "splitMarketShares()": FunctionFragment;
+    "splitShares()": FunctionFragment;
+    "startPreSale()": FunctionFragment;
+    "startPublicSale()": FunctionFragment;
+    "startTokenConverting()": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenByIndex(uint256)": FunctionFragment;
     "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
+    "totalSketchCount()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
+    "unsafeAddWalletToPreSaleWhitelist(address,uint8,uint8)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -59,16 +78,44 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(
-    functionFragment: "changeMarketState",
-    values: [boolean]
+    functionFragment: "bulkAddWalletsToPreSaleWhitelist",
+    values: [string[], BigNumberish[], BigNumberish[]]
   ): string;
   encodeFunctionData(
-    functionFragment: "changePreSaleState",
-    values: [boolean]
+    functionFragment: "buyFromMarket",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "changePublicSaleState",
-    values: [boolean]
+    functionFragment: "claimFreeSketchesAtPresale",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "claimPresaleSketchesAtPresale",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "claimSketchesAtPublicSale",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "claimTokens",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "closeMarket",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "finishPreSale",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "finishPublicSale",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "finishTokenConverting",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "getApproved",
@@ -79,26 +126,34 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
     values: [string, string]
   ): string;
   encodeFunctionData(
-    functionFragment: "isMarketOpened",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "isPreSaleOpened",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "isPublicSaleOpened",
+    functionFragment: "myPresaleSlot",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "openMarket",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "progresses",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "removeWalletFromPreSaleWhitelist",
+    values: [string]
+  ): string;
+  encodeFunctionData(
     functionFragment: "renounceOwnership",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeAddWalletToPreSaleWhitelist",
+    values: [string, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "safeMint", values: [string]): string;
   encodeFunctionData(
@@ -106,8 +161,36 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
     values: [string, string, BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "sendRewardsTo",
+    values: [string, BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "setApprovalForAll",
     values: [string, boolean]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setMarketPrice",
+    values: [BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "splitMarketShares",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "splitShares",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "startPreSale",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "startPublicSale",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "startTokenConverting",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -127,6 +210,10 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "totalSketchCount",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "totalSupply",
     values?: undefined
   ): string;
@@ -138,19 +225,51 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
     functionFragment: "transferOwnership",
     values: [string]
   ): string;
+  encodeFunctionData(
+    functionFragment: "unsafeAddWalletToPreSaleWhitelist",
+    values: [string, BigNumberish, BigNumberish]
+  ): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "changeMarketState",
+    functionFragment: "bulkAddWalletsToPreSaleWhitelist",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "changePreSaleState",
+    functionFragment: "buyFromMarket",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "changePublicSaleState",
+    functionFragment: "claimFreeSketchesAtPresale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "claimPresaleSketchesAtPresale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "claimSketchesAtPublicSale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "claimTokens",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "closeMarket",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "finishPreSale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "finishPublicSale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "finishTokenConverting",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -162,22 +281,24 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "isMarketOpened",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "isPreSaleOpened",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "isPublicSaleOpened",
+    functionFragment: "myPresaleSlot",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "openMarket", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "progresses", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "removeWalletFromPreSaleWhitelist",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "safeAddWalletToPreSaleWhitelist",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
@@ -186,7 +307,35 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "sendRewardsTo",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "setApprovalForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setMarketPrice",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "splitMarketShares",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "splitShares",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "startPreSale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "startPublicSale",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "startTokenConverting",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -204,6 +353,10 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "totalSketchCount",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "totalSupply",
     data: BytesLike
   ): Result;
@@ -213,6 +366,10 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "transferOwnership",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "unsafeAddWalletToPreSaleWhitelist",
     data: BytesLike
   ): Result;
 
@@ -293,18 +450,51 @@ export interface NotDeadGuy extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    changeMarketState(
-      newState: boolean,
+    bulkAddWalletsToPreSaleWhitelist(
+      walletAddresses: string[],
+      saleSlotsOfWallets: BigNumberish[],
+      freeMintSlotsOfWallets: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    changePreSaleState(
-      newState: boolean,
+    buyFromMarket(
+      tokenId: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    claimFreeSketchesAtPresale(
+      howMany: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    changePublicSaleState(
-      newState: boolean,
+    claimPresaleSketchesAtPresale(
+      howMany: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    claimSketchesAtPublicSale(
+      howMany: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    claimTokens(
+      howMany: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    closeMarket(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    finishPreSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    finishPublicSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    finishTokenConverting(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -319,13 +509,22 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    isMarketOpened(overrides?: CallOverrides): Promise<[boolean]>;
-
-    isPreSaleOpened(overrides?: CallOverrides): Promise<[boolean]>;
-
-    isPublicSaleOpened(overrides?: CallOverrides): Promise<[boolean]>;
+    myPresaleSlot(
+      overrides?: CallOverrides
+    ): Promise<
+      [number, number, number, number] & {
+        freeMintSlots: number;
+        usedFreeMintSlots: number;
+        saleSlots: number;
+        usedSaleSlots: number;
+      }
+    >;
 
     name(overrides?: CallOverrides): Promise<[string]>;
+
+    openMarket(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
     owner(overrides?: CallOverrides): Promise<[string]>;
 
@@ -334,7 +533,30 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    progresses(
+      overrides?: CallOverrides
+    ): Promise<
+      [boolean, number, number, number] & {
+        isMarketOpenForTrading: boolean;
+        preSaleState: number;
+        publicSaleState: number;
+        tokenConvertState: number;
+      }
+    >;
+
+    removeWalletFromPreSaleWhitelist(
+      walletAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    safeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -358,9 +580,41 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    sendRewardsTo(
+      to: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    setMarketPrice(
+      tokenId: BigNumberish,
+      price: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    splitMarketShares(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    splitShares(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    startPreSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    startPublicSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    startTokenConverting(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -387,6 +641,8 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    totalSketchCount(overrides?: CallOverrides): Promise<[number]>;
+
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transferFrom(
@@ -400,6 +656,13 @@ export interface NotDeadGuy extends BaseContract {
       newOwner: string,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    unsafeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
 
   approve(
@@ -410,18 +673,51 @@ export interface NotDeadGuy extends BaseContract {
 
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-  changeMarketState(
-    newState: boolean,
+  bulkAddWalletsToPreSaleWhitelist(
+    walletAddresses: string[],
+    saleSlotsOfWallets: BigNumberish[],
+    freeMintSlotsOfWallets: BigNumberish[],
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  changePreSaleState(
-    newState: boolean,
+  buyFromMarket(
+    tokenId: BigNumberish,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  claimFreeSketchesAtPresale(
+    howMany: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  changePublicSaleState(
-    newState: boolean,
+  claimPresaleSketchesAtPresale(
+    howMany: BigNumberish,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  claimSketchesAtPublicSale(
+    howMany: BigNumberish,
+    overrides?: PayableOverrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  claimTokens(
+    howMany: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  closeMarket(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  finishPreSale(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  finishPublicSale(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  finishTokenConverting(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -436,19 +732,51 @@ export interface NotDeadGuy extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  isMarketOpened(overrides?: CallOverrides): Promise<boolean>;
-
-  isPreSaleOpened(overrides?: CallOverrides): Promise<boolean>;
-
-  isPublicSaleOpened(overrides?: CallOverrides): Promise<boolean>;
+  myPresaleSlot(
+    overrides?: CallOverrides
+  ): Promise<
+    [number, number, number, number] & {
+      freeMintSlots: number;
+      usedFreeMintSlots: number;
+      saleSlots: number;
+      usedSaleSlots: number;
+    }
+  >;
 
   name(overrides?: CallOverrides): Promise<string>;
+
+  openMarket(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   owner(overrides?: CallOverrides): Promise<string>;
 
   ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+  progresses(
+    overrides?: CallOverrides
+  ): Promise<
+    [boolean, number, number, number] & {
+      isMarketOpenForTrading: boolean;
+      preSaleState: number;
+      publicSaleState: number;
+      tokenConvertState: number;
+    }
+  >;
+
+  removeWalletFromPreSaleWhitelist(
+    walletAddress: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   renounceOwnership(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  safeAddWalletToPreSaleWhitelist(
+    walletAddress: string,
+    saleSlots: BigNumberish,
+    freeMintSlots: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -472,9 +800,41 @@ export interface NotDeadGuy extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  sendRewardsTo(
+    to: string,
+    amount: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   setApprovalForAll(
     operator: string,
     approved: boolean,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  setMarketPrice(
+    tokenId: BigNumberish,
+    price: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  splitMarketShares(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  splitShares(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  startPreSale(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  startPublicSale(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  startTokenConverting(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -498,6 +858,8 @@ export interface NotDeadGuy extends BaseContract {
 
   tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+  totalSketchCount(overrides?: CallOverrides): Promise<number>;
+
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
   transferFrom(
@@ -512,6 +874,13 @@ export interface NotDeadGuy extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  unsafeAddWalletToPreSaleWhitelist(
+    walletAddress: string,
+    saleSlots: BigNumberish,
+    freeMintSlots: BigNumberish,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     approve(
       to: string,
@@ -521,20 +890,45 @@ export interface NotDeadGuy extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    changeMarketState(
-      newState: boolean,
+    bulkAddWalletsToPreSaleWhitelist(
+      walletAddresses: string[],
+      saleSlotsOfWallets: BigNumberish[],
+      freeMintSlotsOfWallets: BigNumberish[],
+      overrides?: CallOverrides
+    ): Promise<[number, number] & { succeeded: number; failed: number }>;
+
+    buyFromMarket(
+      tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    changePreSaleState(
-      newState: boolean,
+    claimFreeSketchesAtPresale(
+      howMany: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<number>;
 
-    changePublicSaleState(
-      newState: boolean,
+    claimPresaleSketchesAtPresale(
+      howMany: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<number>;
+
+    claimSketchesAtPublicSale(
+      howMany: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<number>;
+
+    claimTokens(
+      howMany: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber[]>;
+
+    closeMarket(overrides?: CallOverrides): Promise<void>;
+
+    finishPreSale(overrides?: CallOverrides): Promise<void>;
+
+    finishPublicSale(overrides?: CallOverrides): Promise<void>;
+
+    finishTokenConverting(overrides?: CallOverrides): Promise<void>;
 
     getApproved(
       tokenId: BigNumberish,
@@ -547,21 +941,51 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    isMarketOpened(overrides?: CallOverrides): Promise<boolean>;
-
-    isPreSaleOpened(overrides?: CallOverrides): Promise<boolean>;
-
-    isPublicSaleOpened(overrides?: CallOverrides): Promise<boolean>;
+    myPresaleSlot(
+      overrides?: CallOverrides
+    ): Promise<
+      [number, number, number, number] & {
+        freeMintSlots: number;
+        usedFreeMintSlots: number;
+        saleSlots: number;
+        usedSaleSlots: number;
+      }
+    >;
 
     name(overrides?: CallOverrides): Promise<string>;
+
+    openMarket(overrides?: CallOverrides): Promise<void>;
 
     owner(overrides?: CallOverrides): Promise<string>;
 
     ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+    progresses(
+      overrides?: CallOverrides
+    ): Promise<
+      [boolean, number, number, number] & {
+        isMarketOpenForTrading: boolean;
+        preSaleState: number;
+        publicSaleState: number;
+        tokenConvertState: number;
+      }
+    >;
+
+    removeWalletFromPreSaleWhitelist(
+      walletAddress: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
-    safeMint(to: string, overrides?: CallOverrides): Promise<void>;
+    safeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    safeMint(to: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: string,
@@ -578,11 +1002,33 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
+    sendRewardsTo(
+      to: string,
+      amount: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    setMarketPrice(
+      tokenId: BigNumberish,
+      price: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    splitMarketShares(overrides?: CallOverrides): Promise<void>;
+
+    splitShares(overrides?: CallOverrides): Promise<void>;
+
+    startPreSale(overrides?: CallOverrides): Promise<void>;
+
+    startPublicSale(overrides?: CallOverrides): Promise<void>;
+
+    startTokenConverting(overrides?: CallOverrides): Promise<void>;
 
     supportsInterface(
       interfaceId: BytesLike,
@@ -604,6 +1050,8 @@ export interface NotDeadGuy extends BaseContract {
 
     tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+    totalSketchCount(overrides?: CallOverrides): Promise<number>;
+
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
@@ -617,6 +1065,13 @@ export interface NotDeadGuy extends BaseContract {
       newOwner: string,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    unsafeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
   };
 
   filters: {
@@ -672,18 +1127,51 @@ export interface NotDeadGuy extends BaseContract {
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
-    changeMarketState(
-      newState: boolean,
+    bulkAddWalletsToPreSaleWhitelist(
+      walletAddresses: string[],
+      saleSlotsOfWallets: BigNumberish[],
+      freeMintSlotsOfWallets: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    changePreSaleState(
-      newState: boolean,
+    buyFromMarket(
+      tokenId: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    claimFreeSketchesAtPresale(
+      howMany: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    changePublicSaleState(
-      newState: boolean,
+    claimPresaleSketchesAtPresale(
+      howMany: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    claimSketchesAtPublicSale(
+      howMany: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    claimTokens(
+      howMany: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    closeMarket(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    finishPreSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    finishPublicSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    finishTokenConverting(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -698,13 +1186,13 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    isMarketOpened(overrides?: CallOverrides): Promise<BigNumber>;
-
-    isPreSaleOpened(overrides?: CallOverrides): Promise<BigNumber>;
-
-    isPublicSaleOpened(overrides?: CallOverrides): Promise<BigNumber>;
+    myPresaleSlot(overrides?: CallOverrides): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<BigNumber>;
+
+    openMarket(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -713,7 +1201,21 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    progresses(overrides?: CallOverrides): Promise<BigNumber>;
+
+    removeWalletFromPreSaleWhitelist(
+      walletAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    safeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -737,9 +1239,41 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    sendRewardsTo(
+      to: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    setMarketPrice(
+      tokenId: BigNumberish,
+      price: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    splitMarketShares(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    splitShares(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    startPreSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    startPublicSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    startTokenConverting(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -766,6 +1300,8 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    totalSketchCount(overrides?: CallOverrides): Promise<BigNumber>;
+
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
@@ -777,6 +1313,13 @@ export interface NotDeadGuy extends BaseContract {
 
     transferOwnership(
       newOwner: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    unsafeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
@@ -793,18 +1336,51 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    changeMarketState(
-      newState: boolean,
+    bulkAddWalletsToPreSaleWhitelist(
+      walletAddresses: string[],
+      saleSlotsOfWallets: BigNumberish[],
+      freeMintSlotsOfWallets: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    changePreSaleState(
-      newState: boolean,
+    buyFromMarket(
+      tokenId: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    claimFreeSketchesAtPresale(
+      howMany: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    changePublicSaleState(
-      newState: boolean,
+    claimPresaleSketchesAtPresale(
+      howMany: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    claimSketchesAtPublicSale(
+      howMany: BigNumberish,
+      overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    claimTokens(
+      howMany: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    closeMarket(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    finishPreSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    finishPublicSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    finishTokenConverting(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -819,15 +1395,13 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    isMarketOpened(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    isPreSaleOpened(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    isPublicSaleOpened(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    myPresaleSlot(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    openMarket(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
@@ -836,7 +1410,21 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    progresses(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    removeWalletFromPreSaleWhitelist(
+      walletAddress: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     renounceOwnership(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    safeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -860,9 +1448,41 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    sendRewardsTo(
+      to: string,
+      amount: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     setApprovalForAll(
       operator: string,
       approved: boolean,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setMarketPrice(
+      tokenId: BigNumberish,
+      price: BigNumberish,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    splitMarketShares(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    splitShares(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    startPreSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    startPublicSale(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    startTokenConverting(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -889,6 +1509,8 @@ export interface NotDeadGuy extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    totalSketchCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferFrom(
@@ -900,6 +1522,13 @@ export interface NotDeadGuy extends BaseContract {
 
     transferOwnership(
       newOwner: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    unsafeAddWalletToPreSaleWhitelist(
+      walletAddress: string,
+      saleSlots: BigNumberish,
+      freeMintSlots: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
