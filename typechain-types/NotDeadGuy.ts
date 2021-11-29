@@ -376,14 +376,44 @@ export interface NotDeadGuyInterface extends ethers.utils.Interface {
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
+    "ConvertingFinished()": EventFragment;
+    "ConvertingStarted()": EventFragment;
+    "FreeSketchesTaken(address,uint16,uint16)": EventFragment;
+    "MarketPaused()": EventFragment;
+    "MarketPriceChanged(uint256,uint256)": EventFragment;
+    "MarketResumed()": EventFragment;
+    "MarketSale(address,address,uint256,uint256,uint256,uint256)": EventFragment;
+    "NftsMinted(address,uint256[])": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
+    "PresaleFinished()": EventFragment;
+    "PresaleStarted()": EventFragment;
+    "PublicSaleFinished()": EventFragment;
+    "PublicSaleStarted()": EventFragment;
+    "RewardsSentTo(address,uint256)": EventFragment;
+    "SketchesTaken(address,uint16,uint16)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
+    "UpsertToWhitelist(address,uint8,uint8)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ConvertingFinished"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ConvertingStarted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "FreeSketchesTaken"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MarketPaused"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MarketPriceChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MarketResumed"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MarketSale"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "NftsMinted"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PresaleFinished"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PresaleStarted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PublicSaleFinished"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PublicSaleStarted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RewardsSentTo"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "SketchesTaken"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "UpsertToWhitelist"): EventFragment;
 }
 
 export type ApprovalEvent = TypedEvent<
@@ -400,6 +430,61 @@ export type ApprovalForAllEvent = TypedEvent<
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
 
+export type ConvertingFinishedEvent = TypedEvent<[], {}>;
+
+export type ConvertingFinishedEventFilter =
+  TypedEventFilter<ConvertingFinishedEvent>;
+
+export type ConvertingStartedEvent = TypedEvent<[], {}>;
+
+export type ConvertingStartedEventFilter =
+  TypedEventFilter<ConvertingStartedEvent>;
+
+export type FreeSketchesTakenEvent = TypedEvent<
+  [string, number, number],
+  { to: string; sketchCount: number; total: number }
+>;
+
+export type FreeSketchesTakenEventFilter =
+  TypedEventFilter<FreeSketchesTakenEvent>;
+
+export type MarketPausedEvent = TypedEvent<[], {}>;
+
+export type MarketPausedEventFilter = TypedEventFilter<MarketPausedEvent>;
+
+export type MarketPriceChangedEvent = TypedEvent<
+  [BigNumber, BigNumber],
+  { nftId: BigNumber; newPrice: BigNumber }
+>;
+
+export type MarketPriceChangedEventFilter =
+  TypedEventFilter<MarketPriceChangedEvent>;
+
+export type MarketResumedEvent = TypedEvent<[], {}>;
+
+export type MarketResumedEventFilter = TypedEventFilter<MarketResumedEvent>;
+
+export type MarketSaleEvent = TypedEvent<
+  [string, string, BigNumber, BigNumber, BigNumber, BigNumber],
+  {
+    from: string;
+    to: string;
+    nftId: BigNumber;
+    price: BigNumber;
+    shareCuts: BigNumber;
+    holderCut: BigNumber;
+  }
+>;
+
+export type MarketSaleEventFilter = TypedEventFilter<MarketSaleEvent>;
+
+export type NftsMintedEvent = TypedEvent<
+  [string, BigNumber[]],
+  { to: string; nftIds: BigNumber[] }
+>;
+
+export type NftsMintedEventFilter = TypedEventFilter<NftsMintedEvent>;
+
 export type OwnershipTransferredEvent = TypedEvent<
   [string, string],
   { previousOwner: string; newOwner: string }
@@ -408,12 +493,52 @@ export type OwnershipTransferredEvent = TypedEvent<
 export type OwnershipTransferredEventFilter =
   TypedEventFilter<OwnershipTransferredEvent>;
 
+export type PresaleFinishedEvent = TypedEvent<[], {}>;
+
+export type PresaleFinishedEventFilter = TypedEventFilter<PresaleFinishedEvent>;
+
+export type PresaleStartedEvent = TypedEvent<[], {}>;
+
+export type PresaleStartedEventFilter = TypedEventFilter<PresaleStartedEvent>;
+
+export type PublicSaleFinishedEvent = TypedEvent<[], {}>;
+
+export type PublicSaleFinishedEventFilter =
+  TypedEventFilter<PublicSaleFinishedEvent>;
+
+export type PublicSaleStartedEvent = TypedEvent<[], {}>;
+
+export type PublicSaleStartedEventFilter =
+  TypedEventFilter<PublicSaleStartedEvent>;
+
+export type RewardsSentToEvent = TypedEvent<
+  [string, BigNumber],
+  { walletAddress: string; amount: BigNumber }
+>;
+
+export type RewardsSentToEventFilter = TypedEventFilter<RewardsSentToEvent>;
+
+export type SketchesTakenEvent = TypedEvent<
+  [string, number, number],
+  { to: string; sketchCount: number; total: number }
+>;
+
+export type SketchesTakenEventFilter = TypedEventFilter<SketchesTakenEvent>;
+
 export type TransferEvent = TypedEvent<
   [string, string, BigNumber],
   { from: string; to: string; tokenId: BigNumber }
 >;
 
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
+
+export type UpsertToWhitelistEvent = TypedEvent<
+  [string, number, number],
+  { walletAddress: string; saleSlots: number; freeMintSlots: number }
+>;
+
+export type UpsertToWhitelistEventFilter =
+  TypedEventFilter<UpsertToWhitelistEvent>;
 
 export interface NotDeadGuy extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -1097,6 +1222,61 @@ export interface NotDeadGuy extends BaseContract {
       approved?: null
     ): ApprovalForAllEventFilter;
 
+    "ConvertingFinished()"(): ConvertingFinishedEventFilter;
+    ConvertingFinished(): ConvertingFinishedEventFilter;
+
+    "ConvertingStarted()"(): ConvertingStartedEventFilter;
+    ConvertingStarted(): ConvertingStartedEventFilter;
+
+    "FreeSketchesTaken(address,uint16,uint16)"(
+      to?: null,
+      sketchCount?: null,
+      total?: null
+    ): FreeSketchesTakenEventFilter;
+    FreeSketchesTaken(
+      to?: null,
+      sketchCount?: null,
+      total?: null
+    ): FreeSketchesTakenEventFilter;
+
+    "MarketPaused()"(): MarketPausedEventFilter;
+    MarketPaused(): MarketPausedEventFilter;
+
+    "MarketPriceChanged(uint256,uint256)"(
+      nftId?: null,
+      newPrice?: null
+    ): MarketPriceChangedEventFilter;
+    MarketPriceChanged(
+      nftId?: null,
+      newPrice?: null
+    ): MarketPriceChangedEventFilter;
+
+    "MarketResumed()"(): MarketResumedEventFilter;
+    MarketResumed(): MarketResumedEventFilter;
+
+    "MarketSale(address,address,uint256,uint256,uint256,uint256)"(
+      from?: null,
+      to?: null,
+      nftId?: null,
+      price?: null,
+      shareCuts?: null,
+      holderCut?: null
+    ): MarketSaleEventFilter;
+    MarketSale(
+      from?: null,
+      to?: null,
+      nftId?: null,
+      price?: null,
+      shareCuts?: null,
+      holderCut?: null
+    ): MarketSaleEventFilter;
+
+    "NftsMinted(address,uint256[])"(
+      to?: null,
+      nftIds?: null
+    ): NftsMintedEventFilter;
+    NftsMinted(to?: null, nftIds?: null): NftsMintedEventFilter;
+
     "OwnershipTransferred(address,address)"(
       previousOwner?: string | null,
       newOwner?: string | null
@@ -1105,6 +1285,38 @@ export interface NotDeadGuy extends BaseContract {
       previousOwner?: string | null,
       newOwner?: string | null
     ): OwnershipTransferredEventFilter;
+
+    "PresaleFinished()"(): PresaleFinishedEventFilter;
+    PresaleFinished(): PresaleFinishedEventFilter;
+
+    "PresaleStarted()"(): PresaleStartedEventFilter;
+    PresaleStarted(): PresaleStartedEventFilter;
+
+    "PublicSaleFinished()"(): PublicSaleFinishedEventFilter;
+    PublicSaleFinished(): PublicSaleFinishedEventFilter;
+
+    "PublicSaleStarted()"(): PublicSaleStartedEventFilter;
+    PublicSaleStarted(): PublicSaleStartedEventFilter;
+
+    "RewardsSentTo(address,uint256)"(
+      walletAddress?: null,
+      amount?: null
+    ): RewardsSentToEventFilter;
+    RewardsSentTo(
+      walletAddress?: null,
+      amount?: null
+    ): RewardsSentToEventFilter;
+
+    "SketchesTaken(address,uint16,uint16)"(
+      to?: null,
+      sketchCount?: null,
+      total?: null
+    ): SketchesTakenEventFilter;
+    SketchesTaken(
+      to?: null,
+      sketchCount?: null,
+      total?: null
+    ): SketchesTakenEventFilter;
 
     "Transfer(address,address,uint256)"(
       from?: string | null,
@@ -1116,6 +1328,17 @@ export interface NotDeadGuy extends BaseContract {
       to?: string | null,
       tokenId?: BigNumberish | null
     ): TransferEventFilter;
+
+    "UpsertToWhitelist(address,uint8,uint8)"(
+      walletAddress?: null,
+      saleSlots?: null,
+      freeMintSlots?: null
+    ): UpsertToWhitelistEventFilter;
+    UpsertToWhitelist(
+      walletAddress?: null,
+      saleSlots?: null,
+      freeMintSlots?: null
+    ): UpsertToWhitelistEventFilter;
   };
 
   estimateGas: {
