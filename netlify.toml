@@ -8,5 +8,5 @@ publish = "build/"
 
 [[redirects]]
 from = "/*"
-to = "/dapp/index.html"
+to = "/dapp/build/index.html"
 force = true
