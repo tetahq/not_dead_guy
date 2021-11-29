@@ -16,7 +16,7 @@ export default function Dapp() {
                     <img src='/images/background-mask.png' alt='' className='bg-image-mask' />
                     <div className='hero-right-area'>
                         <img src='/images/hero-title.svg' alt='' className='hero-title' />
-                        <a href='#'><img src='/images/discord-button.png' alt='' className='button' /></a>
+                        <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer'><img src='/images/discord-button.png' alt='' className='button' /></a>
                     </div>
                     <img src='/images/Particle.svg' alt='' className='particul' />
                 </div>
@@ -51,7 +51,7 @@ export default function Dapp() {
                         <div id='w-node-a948d2b2-4bfc-c745-7938-547902ae5f8b-64834dba' className='seperator' />
                         <div className='body-m'>10% of every minting fee is reflected back to existing NDG holders and can be claimed at any time.</div>
                     </div>
-                    <div className='phase-div-2'>
+                    <div className='phase-div'>
                         <div className='phase-title'>Phase 2</div>
                         <div id='w-node-_8653c304-3103-4410-fac5-88a8775a5edf-64834dba' className='seperator' />
                         <div className='body-m'>Meeting with our early supporters on the metaverse. We will discuss the future of NDG.</div>
@@ -170,7 +170,7 @@ export default function Dapp() {
             <div className='cta'>
                 <div className='cta-wrapper'>
                     <h1 className='cta-head'>To build better one</h1>
-                    <a href='#' className='link-block bg-w'>
+                    <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='link-block bg-w'>
                         <div className='text-block-2'>Join Discord</div>
                     </a>
                 </div>
@@ -186,13 +186,13 @@ export default function Dapp() {
                             <div>
                                 <div className='body-m bm-24px'>FOLLOW US</div>
                             </div>
-                            <a href='#' className='div-block-6 bm-16px w-inline-block'><img src='/images/discord-fill-1.svg' alt='' className='image-7' />
+                            <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='div-block-6 bm-16px w-inline-block'><img src='/images/discord-fill-1.svg' alt='' className='image-7' />
                                 <div className='text-block-4'>Discord</div>
                             </a>
-                            <a href='#' className='div-block-6 bm-16px w-inline-block'><img src='/images/twitter-fill-1.svg' alt='' className='image-7' />
+                            <a href='https://twitter.com/NotDeadGuyNFT' target='_blank' rel='noreferrer' className='div-block-6 bm-16px w-inline-block'><img src='/images/twitter-fill-1.svg' alt='' className='image-7' />
                                 <div className='text-block-4'>Twitter</div>
                             </a>
-                            <a href='#' className='div-block-6 w-inline-block'><img src='/images/instagram-fill-1.svg' alt='' className='image-7' />
+                            <a href='https://instagram.com/notdeadguynft' className='div-block-6 w-inline-block' target='_blank' rel='noreferrer'><img src='/images/instagram-fill-1.svg' alt='' className='image-7' />
                                 <div className='text-block-4'>Instagram</div>
                             </a>
                         </div>
