@@ -1,0 +1,11 @@
+{
+    "multipass": true,
+    "plugins": [
+        { "removeEmptyAttrs": true },
+        { "removeEmptyContainers": true },
+        { "minifyStyles": true },
+        { "convertStyleToAttrs": true },
+        { "collapseGroups": true },
+        { "removeViewBox": false }
+    ]
+}

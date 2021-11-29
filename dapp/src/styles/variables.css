@@ -1,0 +1,106 @@
+:root {
+    /*
+    * Colors
+    */
+    --white: #fff;
+    --light: #fff;
+    --light-transparent: rgba(255, 255, 255, 0.1);
+    --dark: rgb(30, 38, 109);
+    --dark-transparent: rgba(30, 38, 109, 0.1);
+    --dark-transparenter: rgba(30, 38, 109, 0.05);
+    --black-transparent: rgba(0, 0, 0, 0.06);
+    --backdrop: rgba(0, 0, 0, 0.4);
+
+    --gray-1: #f7faff;
+    --gray-2: #fff;
+    --gray-3: #fff;
+    --gray-4: #455880;
+    --gray-5: rgba(69, 88, 128, 0.08);
+    --gray-6: rgb(101, 102, 123);
+    --gray-7: #f7faff;
+    --gray-8: rgb(30, 38, 109);
+
+    --red: rgb(255, 67, 91);
+    --red-transparent: rgba(255, 67, 91, 0.2);
+    --green: rgb(14, 214, 28);
+    --green-transparent: rgba(14, 214, 28, 0.2);
+    --blue: rgb(14, 29, 214);
+    --blue-transparent: rgba(14, 29, 214, 0.2);
+    --orange: rgb(255, 89, 63);
+    --orange-transparent: rgba(255, 89, 63, 0.2);
+    --yellow: rgb(255, 153, 16);
+    --yellow-transparent: rgba(255, 153, 16, 0.2);
+    --pink: rgb(255, 67, 91);
+    --pink-transparent: rgba(255, 67, 91, 0.2);
+
+    --border-color: rgba(0, 0, 0, 0.18);
+
+    --navigation-item: var(--dark);
+    --navigation-item-icon: var(--red);
+    --navigation-item-bg: var(--red-transparent);
+
+    /*
+    * Shadows
+    */
+    --shadow-1: 0 0 3rem rgba(0, 0, 0, 0.05);
+    --shadow-2: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+    --shadow-3: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    /*
+    * Fonts
+    */
+    --base-font-family: 'Skranji', cursive;
+    --base-font-lineheight: 1.5;
+
+    /**
+    * Z-indexes
+    */
+    --z-index-0: 0;
+    --z-index-1: 10;
+    --z-index-2: 20;
+    --z-index-3: 30;
+    --z-index-4: 40;
+    --z-index-5: 50;
+    --z-index-6: 60;
+    --z-index-7: 70;
+}
+
+html.dark {
+    /*
+    * Colors
+    */
+    --light: rgb(30, 38, 109);
+    --light-transparent: rgba(30, 38, 109, 0.1);
+    --dark: #fff;
+    --dark-transparent: rgba(255, 255, 255, 0.1);
+    --dark-transparenter: rgba(255, 255, 255, 0.05);
+    --black-transparent: rgba(0, 0, 0, 0.16);
+
+    --gray-1: #1e1d2b;
+    --gray-2: #252736;
+    --gray-3: #181722;
+    --gray-4: #8e8faf;
+    --gray-5: rgba(142, 143, 175, 0.08);
+    --gray-6: rgb(101, 102, 123);
+    --gray-7: #252736;
+    --gray-8: rgba(255, 255, 255, 0.2);
+
+    --red-transparent: rgba(255, 67, 91, 0.1);
+    --green-transparent: rgba(14, 214, 28, 0.1);
+    --blue-transparent: rgba(14, 29, 214, 0.1);
+    --orange-transparent: rgba(255, 89, 63, 0.1);
+    --yellow-transparent: rgba(255, 153, 16, 0.1);
+
+    --border-color: rgba(255, 255, 255, 0.18);
+
+    --navigation-item: var(--red);
+    --navigation-item-icon: var(--red);
+    --navigation-item-bg: var(--red-transparent);
+
+    /*
+    * Shadows
+    */
+    --shadow-1: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    --shadow-2: 0 1rem 2rem rgba(0, 0, 0, 0.08);
+    --shadow-3: rgba(0, 0, 0, 0.08) 0px 2px 16px 0px, rgba(0, 0, 0, 0.08) 0px 2px 16px 0px;
+}
