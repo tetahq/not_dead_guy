@@ -1,12 +1,7 @@
 [build]
 base = "dapp/"
-publish = "build/"
+publish = "/"
 command = "yarn build"
 
 [context.deploy-preview]
-publish = "build/"
-
-[[redirects]]
-from = "/*"
-to = "/dapp/build/index.html"
-force = true
+publish = "/"
