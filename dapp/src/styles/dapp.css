@@ -30,31 +30,31 @@ h5 {
     letter-spacing: -0.02em;
 }
 
-.particul {
-    position: absolute;
-    left: 0%;
-    top: 0%;
-    right: 0%;
-    bottom: 0%;
-    display: block;
+@keyframes MoveUpDown {
+    0%, 100% {
+        top: 0;
+    }
+    50% {
+        top: -50px;
+    }
 }
 
-.title {
+.particul {
+    width: 100%;
     position: absolute;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: none;
+    animation: MoveUpDown 5s linear infinite;
 }
+
+@media (--lg) {
+    .particul {
+        display: block;
+    }
+}
+
 
 .hero {
     display: -webkit-box;
@@ -67,6 +67,7 @@ h5 {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
+    align-items: center;
 }
 
 .body {
@@ -78,36 +79,94 @@ h5 {
     overflow: hidden;
 }
 
-.hero-container {
+.container {
+    margin: 0 auto;
     max-width: 1440px;
 }
 
-.button {
+.hero-container {
+    width: 100%;
+    height: 100%;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: none;
+}
+
+.bg-image-mobile {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+}
+
+@media (--lg) {
+    .bg-image-mobile {
+        display: none;
+    }
+
+    .bg-image {
+        display: block;
+    }
+}
+
+.bg-image-mask {
     position: absolute;
-    left: auto;
-    top: 0%;
-    right: auto;
-    bottom: 0%;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.hero-right-area {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 200px;
+    padding: 16px;
+    z-index: 3;
+}
+
+.hero-title {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 60px;
+}
+
+.button {
     cursor: pointer;
 }
 
-.story-section {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+@media (--lg) {
+    .hero-right-area {
+        width: 40%;
+        margin-top: 0;
+        margin-left: auto;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .hero-title {
+        padding-right: 20px;
+    }
 }
 
 .image {
     position: absolute;
     left: auto;
     top: 88px;
-    right: 0%;
-    bottom: 0%;
+    right: 0;
+    bottom: 0;
 }
 
 .story-container {
@@ -115,10 +174,8 @@ h5 {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    max-width: 1280px;
-    margin-top: 108px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 108px auto 0 auto;
+    max-width: 1440px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -136,10 +193,10 @@ h5 {
 
 .image-2 {
     position: absolute;
-    left: 0%;
-    top: 0%;
-    right: 0%;
-    bottom: 0%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .story-vid {
@@ -368,7 +425,7 @@ h5 {
 }
 
 .flickity-slider > img {
- margin-right: 40px;
+    margin-right: 40px;
 }
 
 .slide-nav {
@@ -523,10 +580,8 @@ h5 {
 }
 
 .metaverse-contain {
-    max-width: 100%;
-    margin-top: 136px;
-    padding-right: 91px;
-    padding-left: 69px;
+    margin: 108px auto 0 auto;
+    max-width: 1440px;
 }
 
 .heading-3 {
@@ -652,43 +707,41 @@ h5 {
 .cta {
     margin-top: 120px;
     width: 100%;
-    height: 500px;
     position: relative;
+}
+
+.cta-wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .cta-head {
-    left: 320px;
-    position: absolute;
-    z-index: 2;
     max-width: 368px;
     color: #fff;
     text-align: left;
     font-size: 64px;
-    text-shadow: -7px 6px 0 rgba(0,0,0,.8);
+    text-shadow: -7px 6px 0 rgba(0, 0, 0, .8);
 }
 
-.footer-top{
-    z-index: 1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
+.cta-image {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
-.cta > .link-block {
-    right: 320px;
-    z-index: 2;
-    position: absolute;
+.cta-wrapper > .link-block {
 }
 
 .footer {
     max-width: 100%;
     margin-top: 96px;
-    padding: 56px 270px 56px 162px;
+    padding: 20px;
 }
 
 .heading-4 {
@@ -700,14 +753,23 @@ h5 {
 }
 
 .div-block-5 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media(--lg){
+    .footer {
+        max-width: 100%;
+        margin-top: 96px;
+        padding: 56px 270px 56px 162px;
+    }
+
+    .div-block-5 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .text-block-4 {
@@ -823,29 +885,30 @@ h5 {
     grid-column-end: span 1;
 }
 
-.video-with-border{
+.video-with-border {
     position: relative;
-    width: 100%;
+    width: calc(100% - 40px);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 36px;
+    margin: 36px 20px;
+    cursor: pointer;
 }
 
-.video-with-border > *:nth-child(2){
+.video-with-border > *:nth-child(2) {
     position: absolute;
     width: 120%;
-    top: -74px;
-    left: -129px;
-    right: 0;
-    bottom: 0;
+    z-index: 2;
+}
+
+.video-thumbnail {
+    position: absolute;
     z-index: 1;
+    width: 100%;
+    height: auto;
 }
 
 .video-play-button {
     position: absolute;
-}
-
-.bg-image{
-    width: 100%;
+    z-index: 3;
 }

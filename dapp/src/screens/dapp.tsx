@@ -9,17 +9,19 @@ export default function Dapp() {
     const [isPlayMetaverse, setPlayMetaverse] = useState<boolean | undefined>(undefined)
     return (
         <div className='body'>
-            <div className='hero-container w-container'>
+            <div className='hero-container'>
                 <div className='hero'>
-                    <img src='/images/bg-mask.png' sizes='(max-width: 1440px) 100vw, 1440px'
-                         srcSet='/images/bg-mask-p-500.png 500w, images/bg-mask-p-800.png 800w, images/bg-mask-p-1080.png 1080w, images/bg-mask.png 1440w' alt=''
-                         className='bg-image' />
-                    <img src='/images/Title.svg' alt='' className='title' />
-                    <img src='/images/Button-Normal.svg' alt='' className='button' />
+                    <img src='/images/background.png' alt='' className='bg-image' />
+                    <img src='/images/background-mobile.png' alt='' className='bg-image-mobile' />
+                    <img src='/images/background-mask.png' alt='' className='bg-image-mask' />
+                    <div className='hero-right-area'>
+                        <img src='/images/hero-title.svg' alt='' className='hero-title' />
+                        <a href='#'><img src='/images/discord-button.png' alt='' className='button' /></a>
+                    </div>
                     <img src='/images/Particle.svg' alt='' className='particul' />
                 </div>
             </div>
-            <div className='story-container w-container'>
+            <div className='story-container'>
                 <div className='_2nd-title'>
                     <div id='w-node-_404bdba6-9ce3-d980-683f-01359d139531-64834dba' className='_2nd-title-text'>
                         <h1 className='heading'>Will you accept the<br />invitation?</h1><img src='/images/Vector.svg' alt='' className='decorative' />
@@ -29,13 +31,14 @@ export default function Dapp() {
                     isPlayMetaverse && setPlayMetaverse(false)
                     setPlayStory(x => typeof x === 'undefined' ? true : !x)
                 }}>
-                    <Video src={'/videos/story.mp4'} isPlay={isPlayStory}/>
+                    <Video src={'/videos/story.mp4'} isPlay={isPlayStory} />
                     <img src='/images/video-border.png' alt='' />
 
+                    {!isPlayStory && <img className='video-thumbnail' src='/images/video-story-thumb.png' alt='' />}
                     {!isPlayStory && <img className='video-play-button' src='/images/video-play.png' alt='' />}
                 </div>
             </div>
-            <div className='roadmap-container w-container'>
+            <div className='roadmap-container'>
                 <div className='roadmap-title-div'>
                     <h1 className='heading-2'>Roadmap Summary</h1>
                 </div>
@@ -60,31 +63,31 @@ export default function Dapp() {
                     </div>
                 </div>
             </div>
-                <Flickity className='slider' options={{
-                    autoPlay: 1000,
-                    prevNextButtons: false,
-                    wrapAround: true,
-                    pageDots: false,
-                    lazyLoad: true,
-                    initialIndex: 3
-                }} static>
-                    <img src='/images/nft/1-Waiter.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/2-Pilot.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/4.1-Bride.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/3-Cop.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/5-Firefighter.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/12-Roman.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/13-King.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/14-İlk Kurban.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/15-Tattoo Artist.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/16-Diver.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/17-Doctor.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/18-Amiral.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/19-Street Artist.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/20-Samurai.jpg' width='400' alt='' className='image-3' />
-                    <img src='/images/nft/4.2-Groom.jpg' width='400' alt='' className='image-3' />
-                </Flickity>
-            <div className='tokenomics w-container'>
+            <Flickity className='slider' options={{
+                autoPlay: 1000,
+                prevNextButtons: false,
+                wrapAround: true,
+                pageDots: false,
+                lazyLoad: true,
+                initialIndex: 3,
+            }} static>
+                <img src='/images/nft/1-Waiter.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/2-Pilot.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/4.1-Bride.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/3-Cop.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/5-Firefighter.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/12-Roman.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/13-King.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/14-İlk Kurban.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/15-Tattoo Artist.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/16-Diver.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/17-Doctor.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/18-Amiral.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/19-Street Artist.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/20-Samurai.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/4.2-Groom.jpg' width='400' alt='' className='image-3' />
+            </Flickity>
+            <div className='tokenomics'>
                 <div className='tokenomics-title'>
                     <h1 className='heading-2'>Tokenomics</h1><img src='/images/mor-tokenomics.svg' alt='' className='image-6' />
                 </div>
@@ -111,7 +114,7 @@ export default function Dapp() {
                     </div>
                 </div>
             </div>
-            <div className='metaverse-contain w-container'>
+            <div className='metaverse-contain'>
                 <div className='metaverse-title-div'>
                     <h3 className='heading-3'>Have you ever thought of being born at the beginning of the world and starting over?</h3>
                 </div>
@@ -119,14 +122,15 @@ export default function Dapp() {
                     isPlayStory && setPlayStory(false)
                     setPlayMetaverse(x => typeof x === 'undefined' ? true : !x)
                 }}>
-                    <Video src={'/videos/metaverse.mp4'} isPlay={isPlayMetaverse}/>
+                    <Video src={'/videos/metaverse.mp4'} isPlay={isPlayMetaverse} />
                     <img src='/images/video-border.png' alt='' />
 
+                    {!isPlayMetaverse && <img className='video-thumbnail' src='/images/video-metaverse-thumb.png' alt='' />}
                     {!isPlayMetaverse && <img className='video-play-button' src='/images/video-play.png' alt='' />}
                 </div>
             </div>
 
-            <div className='team w-container'>
+            <div className='team'>
                 <div className='team-title'>
                     <h1 className='heading margin-4px'>Team</h1><img src='/images/Vector.svg' alt='' />
                 </div>
@@ -163,14 +167,16 @@ export default function Dapp() {
                     </a>
                 </div>
             </div>
-            <div className='cta w-container'>
+            <div className='cta'>
+                <div className='cta-wrapper'>
                     <h1 className='cta-head'>To build better one</h1>
-                    <a href='#' className='link-block bg-w w-inline-block'>
+                    <a href='#' className='link-block bg-w'>
                         <div className='text-block-2'>Join Discord</div>
                     </a>
-                    <img className='footer-top' src='/images/footer-top.png' alt=''/>
+                </div>
+                <img className='cta-image' src='/images/footer-top.png' alt='' />
             </div>
-            <div className='footer w-container'>
+            <div className='footer'>
                 <div className='div-block-5'>
                     <div className='div-block-4'>
                         <h5 className='heading-4'>What you do in the Metaverse will affect your real life.</h5>
@@ -194,8 +200,8 @@ export default function Dapp() {
                             <div>
                                 <div className='body-m bm-24px'>CONTACT</div>
                             </div>
-                            <a href='#' className='div-block-6 bm-16px w-inline-block'>
-                                <div className='text-block-underline'>contact@ndg.com</div>
+                            <a href='mailto:contact@notdeadguy.com' className='div-block-6 bm-16px w-inline-block'>
+                                <div className='text-block-underline'>contact@notdeadguy.com</div>
                             </a>
                         </div>
                     </div>

@@ -17,12 +17,9 @@
 
 html,
 body {
-    color: var(--color-type-body);
+    color: var(--dark);
     line-height: var(--base-font-lineheight);
     -webkit-font-smoothing: antialiased;
-    min-width: 1440px;
-    max-width: 1440px;
-    margin: 0 auto;
     height: 100%;
     background-color: #F9F9F9;
 }
