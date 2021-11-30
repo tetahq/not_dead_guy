@@ -11,7 +11,7 @@
 }
 
 h1 {
-    color: var(--black);
+    color: var(--dark);
     font-size: 64px;
     line-height: 72px;
     font-weight: 400;
@@ -22,7 +22,7 @@ h1 {
 h5 {
     margin-top: 10px;
     margin-bottom: 10px;
-    color: var(--black);
+    color: var(--dark);
     font-size: 32px;
     line-height: 40px;
     font-weight: 700;
@@ -202,7 +202,7 @@ h5 {
 .heading {
     margin-top: 0;
     margin-bottom: 12px;
-    color: var(--black);
+    color: var(--dark);
     font-size: 64px;
     line-height: 72px;
     font-weight: 400;
@@ -252,7 +252,7 @@ h5 {
 .heading-2 {
     margin-top: 0;
     margin-bottom: 4px;
-    color: var(--black);
+    color: var(--dark);
     font-size: 56px;
     line-height: 64px;
     font-weight: 400;
@@ -268,7 +268,7 @@ h5 {
     position: relative;
     padding: 12px 24px;
     font-size: 20px;
-    border: 2px solid var(--black);
+    border: 2px solid var(--dark);
     background-color: var(--light);
     white-space: nowrap;
 }
@@ -280,7 +280,7 @@ h5 {
     left: -10px;
     width: 10px;
     height: calc(100% + 4px);
-    background: var(--black);
+    background: var(--dark);
     transform: skewY(-45deg);
     transition: all .3s ease-in-out;
 }
@@ -305,7 +305,7 @@ h5 {
 }
 
 .text-block-2 {
-    color: var(--black);
+    color: var(--dark);
     line-height: 32px;
 }
 
@@ -348,7 +348,7 @@ h5 {
     grid-row-gap: 0;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    border: 2px solid var(--black);
+    border: 2px solid var(--dark);
 }
 
 .phase-div::before, .phase-div::after {
@@ -358,7 +358,7 @@ h5 {
     left: -10px;
     width: 10px;
     height: calc(100% + 4px);
-    background: var(--black);
+    background: var(--dark);
     transform: skewY(-45deg);
 }
 
@@ -373,7 +373,7 @@ h5 {
 }
 
 .phase-title {
-    color: var(--black);
+    color: var(--dark);
     font-size: 32px;
     line-height: 40px;
     letter-spacing: 0.02em;
@@ -382,14 +382,14 @@ h5 {
 .seperator {
     width: 48px;
     height: 2px;
-    background-color: var(--black);
-    color: var(--black);
+    background-color: var(--dark);
+    color: var(--dark);
 }
 
 .body-m {
     max-width: 512px;
     margin-top: 24px;
-    color: var(--black);
+    color: var(--dark);
     font-size: 20px;
     line-height: 32px;
     text-align: left;
@@ -464,7 +464,7 @@ h5 {
 }
 
 .text-block-3 {
-    color: var(--black);
+    color: var(--dark);
 }
 
 .tokenomics-share {
@@ -472,7 +472,7 @@ h5 {
     display: flex;
     flex-direction: column;
     padding: 48px 72px;
-    background-color: var(--black) !important;
+    background-color: var(--dark) !important;
     max-width: 1440px;
     width: 100%;
 }
@@ -532,7 +532,7 @@ h5 {
 .body-button {
     max-width: 512px;
     margin-top: 24px;
-    color: var(--black);
+    color: var(--dark);
     font-size: 20px;
     line-height: 32px;
     text-align: center;
@@ -578,7 +578,7 @@ h5 {
     max-width: 800px;
     margin-top: 0;
     margin-bottom: 0;
-    color: var(--black);
+    color: var(--dark);
     font-size: 48px;
     line-height: 56px;
     font-weight: 400;
@@ -727,7 +727,7 @@ h5 {
 }
 
 .text-block-4 {
-    color: var(--black);
+    color: var(--dark);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
@@ -756,7 +756,7 @@ h5 {
 }
 
 .text-block-underline {
-    color: var(--black);
+    color: var(--dark);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
