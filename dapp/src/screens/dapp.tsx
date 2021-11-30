@@ -26,7 +26,7 @@ export default function Dapp() {
                     <div className='_2nd-title-text'>
                         <h1 className='heading'>Will you accept the<br />invitation?</h1><img src='/images/Vector.svg' alt='' className='decorative' />
                     </div>
-                    <img src='/images/nail.png' alt='' className='story-nail'/>
+                    <img src='/images/nail.png' alt='' className='story-nail' />
                 </div>
                 <div className='video-with-border' onClick={() => {
                     isPlayMetaverse && setPlayMetaverse(false)
@@ -43,7 +43,7 @@ export default function Dapp() {
                 <div className='roadmap-title-div'>
                     <h1 className='heading-2'>Roadmap Summary</h1>
                 </div>
-                <a href='#' className='link-block w-inline-block'>
+                <a href='/documents/NotDeadGuyNFT Project.pdf' target='_blank' className='link-block w-inline-block'>
                     <div className='text-block-2'>White Paper</div>
                 </a>
                 <div className='phase-grid'>
@@ -64,14 +64,16 @@ export default function Dapp() {
                     </div>
                 </div>
             </div>
-            <Flickity className='slider' options={{
-                autoPlay: 3000,
-                prevNextButtons: false,
-                wrapAround: true,
-                pageDots: false,
-                lazyLoad: true,
-                initialIndex: 3,
-            }} static>
+            <Flickity className='slider'
+                      options={{
+                          autoPlay: 3000,
+                          prevNextButtons: false,
+                          wrapAround: true,
+                          pageDots: false,
+                          lazyLoad: false,
+                          initialIndex: 3,
+                          contain: true,
+                      }}>
                 <img src='/images/nft/1-Waiter.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/2-Pilot.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/4.1-Bride.jpg' width='400' alt='' className='image-3' />
@@ -87,6 +89,7 @@ export default function Dapp() {
                 <img src='/images/nft/19-Street Artist.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/20-Samurai.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/4.2-Groom.jpg' width='400' alt='' className='image-3' />
+
             </Flickity>
             <div className='tokenomics'>
                 <div className='tokenomics-title'>

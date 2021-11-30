@@ -2228,6 +2228,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-slick@^0.23.7":
+  version "0.23.7"
+  resolved "https://registry.yarnpkg.com/@types/react-slick/-/react-slick-0.23.7.tgz#2ef4f42dd0e9be5633502c3563572c7d7584a368"
+  integrity sha512-v5/puo5Ix+ZeWNo2wqzfEP5CaTtEMU3qByESGt3brp98mIyKhssNaB2hgGrshu+lHAXkV1ku78Tea6FtztyXug==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^17.0.0":
   version "17.0.37"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.37.tgz#6884d0aa402605935c397ae689deed115caad959"
@@ -10966,7 +10973,7 @@ postcss@^7, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, po
     picocolors "^0.2.1"
     source-map "^0.6.1"
 
-postcss@^8.1.0, postcss@^8.3.6:
+postcss@^8.1.0, postcss@^8.4.4:
   version "8.4.4"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.4.tgz#d53d4ec6a75fd62557a66bb41978bf47ff0c2869"
   integrity sha512-joU6fBsN6EIer28Lj6GDFoC/5yOZzLCfn0zHAn/MYXI7aPt4m4hK5KC5ovEZXy+lnCjmYIbQWngvju2ddyEr8Q==
