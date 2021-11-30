@@ -22,6 +22,7 @@ body {
     height: 100%;
     position: relative;
     color: var(--black);
+    overflow-x: hidden;
 }
 
 a {

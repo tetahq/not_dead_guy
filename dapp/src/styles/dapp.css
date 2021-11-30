@@ -479,7 +479,7 @@ h5 {
     display: flex;
     flex-direction: column;
     padding: 48px 72px;
-    background-color: var(--black);
+    background-color: var(--black) !important;
     max-width: 1440px;
     width: 100%;
 }
@@ -513,7 +513,6 @@ h5 {
 
     .tokenomics-share {
         flex-direction: row;
-        background-color: var(--black);
     }
 }
 
@@ -566,6 +565,7 @@ h5 {
 }
 
 .badge {
+    color: var(--white);
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.02em;
