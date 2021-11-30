@@ -4,7 +4,6 @@
 @import './flickity.css';
 
 * {
-    -webkit-tap-highlight-color: transparent;
     transition: 0.1s ease all;
 }
 

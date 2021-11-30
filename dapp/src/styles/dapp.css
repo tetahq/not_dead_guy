@@ -268,7 +268,7 @@ h5 {
     padding: 12px 24px;
     font-size: 20px;
     border: 2px solid var(--black);
-    background-color: var(--white);
+    background-color: var(--light);
     white-space: nowrap;
 }
 
@@ -557,7 +557,7 @@ h5 {
 }
 
 .badge {
-    color: var(--white);
+    color: var(--light);
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.02em;
