@@ -15,7 +15,7 @@ export default function Dapp() {
                     <img src='/images/background-mobile.png' alt='' className='bg-image-mobile' />
                     <img src='/images/background-mask.png' alt='' className='bg-image-mask' />
                     <div className='hero-right-area'>
-                        <img src='/images/hero-title.svg' alt='' className='hero-title' />
+                        <h1 className='hero-title'>NotDeadGuy NFT for the metaverse</h1>
                         <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer'><img src='/images/discord-button.png' alt='' className='button' /></a>
                     </div>
                     <img src='/images/Particle.svg' alt='' className='particul' />
@@ -43,7 +43,7 @@ export default function Dapp() {
                 <div className='roadmap-title-div'>
                     <h1 className='heading-2'>Roadmap Summary</h1>
                 </div>
-                <a href='/documents/NotDeadGuyNFT Project.pdf' target='_blank' className='link-block w-inline-block'>
+                <a href='/documents/NDGWhitepaper.pdf' target='_blank' className='link-block w-inline-block'>
                     <div className='text-block-2'>White Paper</div>
                 </a>
                 <div className='phase-grid'>
@@ -81,15 +81,14 @@ export default function Dapp() {
                 <img src='/images/nft/5-Firefighter.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/12-Roman.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/13-King.jpg' width='400' alt='' className='image-3' />
-                <img src='/images/nft/14-İlk Kurban.jpg' width='400' alt='' className='image-3' />
-                <img src='/images/nft/15-Tattoo Artist.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/14-Ilk-Kurban.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/15-Tattoo-Artist.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/16-Diver.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/17-Doctor.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/18-Amiral.jpg' width='400' alt='' className='image-3' />
-                <img src='/images/nft/19-Street Artist.jpg' width='400' alt='' className='image-3' />
+                <img src='/images/nft/19-Street-Artist.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/20-Samurai.jpg' width='400' alt='' className='image-3' />
                 <img src='/images/nft/4.2-Groom.jpg' width='400' alt='' className='image-3' />
-
             </Flickity>
             <div className='tokenomics'>
                 <div className='tokenomics-title'>

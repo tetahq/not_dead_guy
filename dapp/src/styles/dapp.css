@@ -118,32 +118,44 @@ h5 {
     align-items: center;
     justify-content: flex-start;
     margin-top: 200px;
-    padding: 16px;
     z-index: 3;
 }
 
 .hero-title {
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
+    margin-top: 0;
     margin-bottom: 60px;
+    color: var(--light);
+    font-size: 60px;
+    text-align: center;
+    text-shadow: -6px 5px 0 rgba(0, 0, 0, .8);
 }
 
 .button {
     cursor: pointer;
 }
 
-@media (--lg) {
+@media (--sm) {
+    .hero-title {
+        font-size: 70px;
+    }
+}
+
+@media (--xl) {
     .hero-right-area {
         width: 40%;
         margin-top: 0;
         margin-left: auto;
         align-items: flex-start;
         justify-content: center;
-        padding: 0;
     }
 
     .hero-title {
-        padding-right: 20px;
+        max-width: 500px;
+        font-size: 100px;
+        line-height: 100px;
+        text-align: left;
     }
 }
 
@@ -680,7 +692,7 @@ h5 {
     padding: 0 20px;
 }
 
-@media(--lg){
+@media (--lg) {
     .cta-head {
         font-size: 64px;
         line-height: 72px;
