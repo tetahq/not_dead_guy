@@ -2,7 +2,6 @@
 @import './normalize.css';
 @import './viewports.css';
 @import './flickity.css';
-/*@import './webflow.css';*/
 
 *,
 *::before,
@@ -17,11 +16,12 @@
 
 html,
 body {
-    color: var(--black);
+    font-family: var(--base-font-family);
     line-height: var(--base-font-lineheight);
     -webkit-font-smoothing: antialiased;
     height: 100%;
     background-color: #F9F9F9;
+    color: var(--black);
     min-width: 400px;
 }
 

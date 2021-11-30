@@ -64,15 +64,6 @@ h5 {
     align-items: center;
 }
 
-.body {
-    font-family: var(--base-font-family);
-    color: #f3f3f3;
-    font-size: 64px;
-    line-height: 72px;
-    font-weight: 400;
-    overflow: hidden;
-}
-
 .container {
     margin: 0 auto;
     max-width: 1440px;
