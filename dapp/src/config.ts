@@ -3,11 +3,10 @@ const env = process.env.NODE_ENV || 'development'
 const Config = {
     nodeEnv: env,
     app: {
-        name: 'TorchToken',
+        name: 'NotDeadGuy',
     },
     api: {
         // baseUrl: 'https://localhost:5001',
-        baseUrl: 'https://api.torchtoken.com',
     },
     moralis: {
         appId: '5POF6pFx2LuBeCnVL9Ex0saehrZozpgOnvJRxEau',
