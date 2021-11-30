@@ -23,9 +23,10 @@ export default function Dapp() {
             </div>
             <div className='story-container'>
                 <div className='_2nd-title'>
-                    <div id='w-node-_404bdba6-9ce3-d980-683f-01359d139531-64834dba' className='_2nd-title-text'>
+                    <div className='_2nd-title-text'>
                         <h1 className='heading'>Will you accept the<br />invitation?</h1><img src='/images/Vector.svg' alt='' className='decorative' />
                     </div>
+                    <img src='/images/nail.png' alt='' className='story-nail'/>
                 </div>
                 <div className='video-with-border' onClick={() => {
                     isPlayMetaverse && setPlayMetaverse(false)
@@ -45,26 +46,26 @@ export default function Dapp() {
                 <a href='#' className='link-block w-inline-block'>
                     <div className='text-block-2'>White Paper</div>
                 </a>
-                <div className='w-layout-grid grid'>
+                <div className='phase-grid'>
                     <div className='phase-div'>
                         <div className='phase-title'>Phase 1</div>
-                        <div id='w-node-a948d2b2-4bfc-c745-7938-547902ae5f8b-64834dba' className='seperator' />
+                        <div className='seperator' />
                         <div className='body-m'>10% of every minting fee is reflected back to existing NDG holders and can be claimed at any time.</div>
                     </div>
                     <div className='phase-div'>
                         <div className='phase-title'>Phase 2</div>
-                        <div id='w-node-_8653c304-3103-4410-fac5-88a8775a5edf-64834dba' className='seperator' />
+                        <div className='seperator' />
                         <div className='body-m'>Meeting with our early supporters on the metaverse. We will discuss the future of NDG.</div>
                     </div>
                     <div className='phase-div'>
                         <div className='phase-title'>Phase 3</div>
-                        <div id='w-node-_1d5a652f-44d3-f8fc-5f76-b20e6063abcf-64834dba' className='seperator' />
+                        <div className='seperator' />
                         <div className='body-m'>Introducing $NDG Token. You earn $NDG for your time spent in the Metaverse.</div>
                     </div>
                 </div>
             </div>
             <Flickity className='slider' options={{
-                autoPlay: 1000,
+                autoPlay: 3000,
                 prevNextButtons: false,
                 wrapAround: true,
                 pageDots: false,
@@ -92,13 +93,13 @@ export default function Dapp() {
                     <h1 className='heading-2'>Tokenomics</h1><img src='/images/mor-tokenomics.svg' alt='' className='image-6' />
                 </div>
                 <div className='body-button'>The transaction fee from market sales will be redistributed to our community.</div>
-                <div className='div-block-2'>
-                    <div className='tokenomis-share'>
-                        <div id='w-node-_2a890512-f66c-b28d-120a-36e7092b3a2a-64834dba' className='tokenomics-1 r-g'>
+                <div className='div-block-2 tokenomics-wrapper'>
+                    <div className='tokenomics-share'>
+                        <div className='tokenomics-1'>
                             <h1 className='heading color-w'>1%</h1>
                             <div className='body-m color-g'>will be transferred to the original minter of the NotDeadGuy NFT</div>
                         </div>
-                        <div className='tokenomics-1 r-g'>
+                        <div className='tokenomics-1'>
                             <h1 className='heading color-w'>2%</h1>
                             <div className='body-m color-g'>will be distributed between all NDG holders.</div>
                         </div>
@@ -112,6 +113,8 @@ export default function Dapp() {
                             <div className='body-m color-g'>will be distributed to the 20 wallets with the highest amount of trades in our marketplace (weekly event)</div>
                         </div>
                     </div>
+
+                    <img src='/images/seperator-tokenomics.png' alt='' className='seperator-tokenomics' />
                 </div>
             </div>
             <div className='metaverse-contain'>
@@ -167,10 +170,11 @@ export default function Dapp() {
                     </a>
                 </div>
             </div>
+
             <div className='cta'>
                 <div className='cta-wrapper'>
                     <h1 className='cta-head'>To build better one</h1>
-                    <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='link-block bg-w'>
+                    <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='link-block'>
                         <div className='text-block-2'>Join Discord</div>
                     </a>
                 </div>
@@ -186,13 +190,16 @@ export default function Dapp() {
                             <div>
                                 <div className='body-m bm-24px'>FOLLOW US</div>
                             </div>
-                            <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='div-block-6 bm-16px w-inline-block'><img src='/images/discord-fill-1.svg' alt='' className='image-7' />
+                            <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='div-block-6 bm-16px w-inline-block'>
+                                <img src='/images/discord-fill.svg' alt='' className='image-7' />
                                 <div className='text-block-4'>Discord</div>
                             </a>
-                            <a href='https://twitter.com/NotDeadGuyNFT' target='_blank' rel='noreferrer' className='div-block-6 bm-16px w-inline-block'><img src='/images/twitter-fill-1.svg' alt='' className='image-7' />
+                            <a href='https://twitter.com/NotDeadGuyNFT' target='_blank' rel='noreferrer' className='div-block-6 bm-16px w-inline-block'>
+                                <img src='/images/twitter-fill.svg' alt='' className='image-7' />
                                 <div className='text-block-4'>Twitter</div>
                             </a>
-                            <a href='https://instagram.com/notdeadguynft' className='div-block-6 w-inline-block' target='_blank' rel='noreferrer'><img src='/images/instagram-fill-1.svg' alt='' className='image-7' />
+                            <a href='https://instagram.com/notdeadguynft' className='div-block-6 w-inline-block' target='_blank' rel='noreferrer'>
+                                <img src='/images/instagram-fill.svg' alt='' className='image-7' />
                                 <div className='text-block-4'>Instagram</div>
                             </a>
                         </div>

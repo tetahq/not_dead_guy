@@ -17,11 +17,12 @@
 
 html,
 body {
-    color: var(--dark);
+    color: var(--black);
     line-height: var(--base-font-lineheight);
     -webkit-font-smoothing: antialiased;
     height: 100%;
     background-color: #F9F9F9;
+    min-width: 400px;
 }
 
 #root {
