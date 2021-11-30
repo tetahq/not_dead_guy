@@ -8,13 +8,15 @@
     transition: 0.1s ease all;
 }
 
+html{
+    background-color: var(--light);
+}
+
 html,
 body {
     font-family: var(--base-font-family);
     line-height: var(--base-font-lineheight);
-    -webkit-font-smoothing: antialiased;
     height: 100%;
-    background-color: var(--light);
     min-width: 400px;
 }
 
