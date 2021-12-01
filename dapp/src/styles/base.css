@@ -20,7 +20,6 @@ body {
 }
 
 #root {
-    height: 100%;
     position: relative;
     color: var(--dark);
     overflow-x: hidden;

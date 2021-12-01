@@ -226,7 +226,7 @@ h5 {
     margin-top: 0;
     margin-bottom: 4px;
     color: var(--dark);
-    font-size: 46px;
+    font-size: 42px;
     line-height: 72px;
     font-weight: 400;
     text-align: center;
@@ -324,16 +324,44 @@ h5 {
 }
 
 .roadmap-container {
+    position: relative;
     display: flex;
     max-width: 100%;
-    margin-top: 108px;
+    margin-top: 56px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 16px;
+}
+
+@media (--lg) {
+    .roadmap-container {
+        margin-top: 108px;
+        padding: 0;
+    }
 }
 
 .roadmap-container > .link-block {
     margin-top: 48px;
+}
+
+.roadmap-title-div {
+    position: relative;
+}
+
+.nuclei {
+    position: absolute;
+    left: -110px;
+    top: -90px;
+    z-index: -1;
+}
+
+.roadmap-bg-r {
+    position: absolute;
+    right: 0;
+    top: -220px;
+    z-index: -1;
+    width: 300px;
 }
 
 .phase-grid {
@@ -355,6 +383,10 @@ h5 {
     .phase-div:nth-child(2) {
         margin-top: 92px;
     }
+
+    .roadmap-bg-r {
+        width: 400px;
+    }
 }
 
 .phase-div {
@@ -369,6 +401,7 @@ h5 {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     border: 2px solid var(--dark);
+    background-color: var(--extra-light);
 }
 
 .phase-div::before, .phase-div::after {
@@ -715,7 +748,7 @@ h5 {
 }
 
 @media (--lg) {
-    .cta-wrapper{
+    .cta-wrapper {
         flex-direction: row;
     }
 
@@ -738,7 +771,8 @@ h5 {
 }
 
 .heading-4 {
-    text-align: left;
+    text-align: center;
+    margin-bottom: 64px;
 }
 
 .div-block-4 {
@@ -754,6 +788,11 @@ h5 {
 @media (--lg) {
     .footer {
         margin: 108px auto 0 auto;
+    }
+
+    .heading-4 {
+        text-align: left;
+        margin-bottom: 0;
     }
 
     .div-block-5 {
@@ -786,10 +825,17 @@ h5 {
 
 .div-block-7 {
     display: flex;
+    margin: 0 10px;
 }
 
 .footer-rd-2 {
-    margin-left: 112px;
+    margin-left: 30px;
+}
+
+@media (--lg) {
+    .footer-rd-2 {
+        margin-left: 112px;
+    }
 }
 
 .text-block-underline {

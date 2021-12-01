@@ -1,10 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import '../styles/dapp.css'
 import Flickity from 'react-flickity-component'
 import Video from '../components/video'
 import React, { useState } from 'react'
 
 export default function Dapp() {
-    /* eslint-disable jsx-a11y/anchor-is-valid */
     const [isPlayStory, setPlayStory] = useState<boolean | undefined>(undefined)
     const [isPlayMetaverse, setPlayMetaverse] = useState<boolean | undefined>(undefined)
     return (
@@ -18,13 +18,13 @@ export default function Dapp() {
                         <h1 className='hero-title'>NotDeadGuy NFT for the metaverse</h1>
                         <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer'><img src='/images/discord-button.png' alt='' className='button' /></a>
                     </div>
-                    <img src='/images/Particle.svg' alt='' className='particul' />
+                    <img src='/images/particle.svg' alt='' className='particul' />
                 </div>
             </div>
             <div className='story-container'>
                 <div className='_2nd-title'>
                     <div className='_2nd-title-text'>
-                        <h1 className='heading'>Will you accept the<br />invitation?</h1><img src='/images/Vector.svg' alt='' className='decorative' />
+                        <h1 className='heading'>Will you accept the<br />invitation?</h1><img src='/images/pink-vector.svg' alt='' className='decorative' />
                     </div>
                     <img src='/images/nail.png' alt='' className='story-nail' />
                 </div>
@@ -42,7 +42,9 @@ export default function Dapp() {
             <div className='roadmap-container'>
                 <div className='roadmap-title-div'>
                     <h1 className='heading-2'>Roadmap Summary</h1>
+                    <img src='/images/nuclei.png' alt='' className='nuclei'/>
                 </div>
+                <img src='/images/roadmap-bg-r.png' alt='' className='roadmap-bg-r'/>
                 <a href='/documents/NDGWhitepaper.pdf' target='_blank' className='link-block w-inline-block'>
                     <div className='text-block-2'>White Paper</div>
                 </a>
@@ -92,7 +94,7 @@ export default function Dapp() {
             </Flickity>
             <div className='tokenomics'>
                 <div className='tokenomics-title'>
-                    <h1 className='heading-2'>Tokenomics</h1><img src='/images/mor-tokenomics.svg' alt='' className='image-6' />
+                    <h1 className='heading-2'>Tokenomics</h1><img src='/images/purple-vector.svg' alt='' className='image-6' />
                 </div>
                 <div className='body-button'>The transaction fee from market sales will be redistributed to our community.</div>
                 <div className='div-block-2 tokenomics-wrapper'>
@@ -137,36 +139,36 @@ export default function Dapp() {
 
             <div className='team'>
                 <div className='team-title'>
-                    <h1 className='heading margin-4px'>Team</h1><img src='/images/Vector.svg' alt='' />
+                    <h1 className='heading margin-4px'>Team</h1><img src='/images/pink-vector.svg' alt='' />
                 </div>
                 <div className='team-peoples'>
-                    <a href='#' className='tp-1 rm-40px w-inline-block'><img src='/images/Avatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 rm-40px w-inline-block'><img src='/images/avatar-f.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Oxana</h5>
                         <h5 className='avatar-title'>DESIGNER</h5>
                     </a>
-                    <a href='#' className='tp-1 w-inline-block'><img src='/images/MAvatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Can</h5>
                         <h5 className='avatar-title'>DESIGNER</h5>
                     </a>
                 </div>
                 <div className='w-layout-grid grid-2'>
-                    <a href='#' className='tp-1 w-inline-block'><img src='/images/MAvatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Oguz</h5>
                         <h5 className='avatar-title'>B. DEVELOPER</h5>
                     </a>
-                    <a href='#' className='tp-1 w-inline-block'><img src='/images/Avatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-f.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Ceren</h5>
                         <h5 className='avatar-title'>MARKETING</h5>
                     </a>
-                    <a href='#' className='tp-1 w-inline-block'><img src='/images/MAvatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Sezer</h5>
                         <h5 className='avatar-title'>PRODUCT DEV.</h5>
                     </a>
-                    <a href='#' className='tp-1 w-inline-block'><img src='/images/Avatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-f.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Tugce</h5>
                         <h5 className='avatar-title'>MARKETING</h5>
                     </a>
-                    <a href='#' className='tp-1 w-inline-block'><img src='/images/MAvatar.svg' alt='' className='avatar' />
+                    <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
                         <h5 className='avatar-name'>Mehmet</h5>
                         <h5 className='avatar-title'>B. DEVELOPER</h5>
                     </a>
