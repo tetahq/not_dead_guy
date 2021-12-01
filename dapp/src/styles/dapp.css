@@ -863,7 +863,7 @@ h5 {
 
 .video-with-border > *:nth-child(2) {
     position: absolute;
-    width: 120%;
+    width: 121%;
     z-index: 2;
 }
 

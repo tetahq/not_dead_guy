@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import '../styles/dapp.css'
 import Flickity from 'react-flickity-component'
-import Video from '../components/video'
 import React, { useState } from 'react'
+import ReactPlayer from 'react-player'
 
 export default function Dapp() {
     const [isPlayStory, setPlayStory] = useState<boolean | undefined>(undefined)
@@ -32,7 +32,8 @@ export default function Dapp() {
                     isPlayMetaverse && setPlayMetaverse(false)
                     setPlayStory(x => typeof x === 'undefined' ? true : !x)
                 }}>
-                    <Video src={'/videos/story.mp4'} isPlay={isPlayStory} />
+                    <ReactPlayer url='/videos/story.mp4' playing={isPlayStory} width={'100%'} height={'auto'} loop playsinline />
+                    {/*<Video src={'/videos/story.mp4'} isPlay={isPlayStory} />*/}
                     <img src='/images/video-border.png' alt='' />
 
                     {!isPlayStory && <img className='video-thumbnail' src='/images/video-story-thumb.png' alt='' />}
@@ -42,9 +43,9 @@ export default function Dapp() {
             <div className='roadmap-container'>
                 <div className='roadmap-title-div'>
                     <h1 className='heading-2'>Roadmap Summary</h1>
-                    <img src='/images/nuclei.png' alt='' className='nuclei'/>
+                    <img src='/images/nuclei.png' alt='' className='nuclei' />
                 </div>
-                <img src='/images/roadmap-bg-r.png' alt='' className='roadmap-bg-r'/>
+                <img src='/images/roadmap-bg-r.png' alt='' className='roadmap-bg-r' />
                 <a href='/documents/NDGWhitepaper.pdf' target='_blank' className='link-block w-inline-block'>
                     <div className='text-block-2'>White Paper</div>
                 </a>
@@ -129,7 +130,7 @@ export default function Dapp() {
                     isPlayStory && setPlayStory(false)
                     setPlayMetaverse(x => typeof x === 'undefined' ? true : !x)
                 }}>
-                    <Video src={'/videos/metaverse.mp4'} isPlay={isPlayMetaverse} />
+                    <ReactPlayer url='/videos/metaverse.mp4' playing={isPlayMetaverse} width={'100%'} height={'auto'} loop playsinline />
                     <img src='/images/video-border.png' alt='' />
 
                     {!isPlayMetaverse && <img className='video-thumbnail' src='/images/video-metaverse-thumb.png' alt='' />}
