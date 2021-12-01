@@ -8,7 +8,7 @@ function App() {
     return (
         <Providers>
             <Switch>
-                <Route exact path="/">
+                <Route>
                     <Dapp/>
                 </Route>
             </Switch>

@@ -47,6 +47,8 @@ h5 {
     top: 0;
     display: none;
     animation: MoveUpDown 5s linear infinite;
+    pointer-events: none;
+    user-select: none;
 }
 
 @media (--lg) {
@@ -55,7 +57,6 @@ h5 {
     }
 }
 
-
 .hero {
     position: relative;
     display: flex;
@@ -63,11 +64,6 @@ h5 {
     height: 100%;
     justify-content: center;
     align-items: center;
-}
-
-.container {
-    margin: 0 auto;
-    max-width: 1440px;
 }
 
 .hero-container {
@@ -80,6 +76,8 @@ h5 {
     height: 100vh;
     object-fit: cover;
     display: none;
+    pointer-events: none;
+    user-select: none;
 }
 
 .bg-image-mobile {
@@ -87,6 +85,8 @@ h5 {
     height: 100vh;
     object-fit: cover;
     display: block;
+    pointer-events: none;
+    user-select: none;
 }
 
 @media (--lg) {
@@ -106,6 +106,8 @@ h5 {
     right: 0;
     width: 100%;
     z-index: 1;
+    pointer-events: none;
+    user-select: none;
 }
 
 .hero-right-area {
@@ -159,37 +161,18 @@ h5 {
     }
 }
 
-.image {
-    position: absolute;
-    left: auto;
-    top: 88px;
-    right: 0;
-    bottom: 0;
-}
-
 .story-container {
     display: flex;
-    margin: 108px auto 0 auto;
+    margin: 56px 0 0 0;
     max-width: 1440px;
     flex-direction: column;
     align-items: center;
 }
 
-.video {
-    position: absolute;
-}
-
-.image-2 {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.story-vid {
-    position: relative;
-    display: inline-block;
+@media(--lg){
+    .story-container {
+        margin: 108px auto 0 auto;
+    }
 }
 
 ._2nd-title {
@@ -209,6 +192,8 @@ h5 {
     position: absolute;
     right: 100px;
     top: 0;
+    pointer-events: none;
+    user-select: none;
 }
 
 .heading {
@@ -254,21 +239,14 @@ h5 {
 
 .decorative {
     max-width: 272%;
+    pointer-events: none;
+    user-select: none;
 }
 
 ._2nd-title-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.nails {
-    display: block;
-}
-
-
-.text-block {
-    text-decoration: none;
 }
 
 .link-block {
@@ -316,13 +294,6 @@ h5 {
     line-height: 32px;
 }
 
-.grid {
-    margin-top: 32px;
-    grid-column-gap: 95px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-}
-
 .roadmap-container {
     position: relative;
     display: flex;
@@ -351,10 +322,14 @@ h5 {
 
 .nuclei {
     display: none;
+    pointer-events: none;
+    user-select: none;
 }
 
 .roadmap-bg-r {
     display: none;
+    pointer-events: none;
+    user-select: none;
 }
 
 .phase-grid {
@@ -477,22 +452,19 @@ h5 {
     margin-right: 40px;
 }
 
-.slide-nav {
-    display: none;
-}
-
 .tokenomics {
     display: flex;
     max-width: 100%;
     margin-top: 128px;
-    padding-right: 80px;
-    padding-left: 80px;
+    padding: 0 16px;
     flex-direction: column;
     align-items: center;
     position: relative;
 }
 
 .tokenomics-bg-r {
+    pointer-events: none;
+    user-select: none;
     position: absolute;
     right: 0;
     top: -190px;
@@ -505,19 +477,7 @@ h5 {
     width: 400px;
 }
 
-.image-4 {
-    display: block;
-}
-
-.image-5 {
-    display: block;
-}
-
 .slide {
-    overflow: visible;
-}
-
-.slide-2 {
     overflow: visible;
 }
 
@@ -530,10 +490,6 @@ h5 {
 
 .image-6 {
     display: block;
-}
-
-.text-block-3 {
-    color: var(--dark);
 }
 
 .tokenomics-share {
@@ -556,6 +512,8 @@ h5 {
 
 .seperator-tokenomics {
     display: none;
+    pointer-events: none;
+    user-select: none;
 }
 
 @media (--lg) {
@@ -567,6 +525,10 @@ h5 {
         top: 0;
         left: 0;
         z-index: -1;
+    }
+
+    .tokenomics{
+        padding: 0 80px;
     }
 
     .tokenomics-wrapper {
@@ -639,7 +601,7 @@ h5 {
 }
 
 .metaverse-contain {
-    margin: 108px auto 0 auto;
+    margin: 56px 0 0 0;
     max-width: 1440px;
 }
 
@@ -648,17 +610,34 @@ h5 {
     margin-top: 0;
     margin-bottom: 0;
     color: var(--dark);
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 36px;
+    line-height: 42px;
     font-weight: 400;
     letter-spacing: -0.02em;
+    padding: 0 16px;
 }
 
 .metaverse-title-div {
     display: flex;
-    margin-bottom: 32px;
+    margin-bottom: 56px;
     justify-content: center;
     text-align: center;
+}
+
+@media (--lg){
+    .metaverse-contain {
+        margin: 108px auto 0 auto;
+    }
+
+    .heading-3{
+        font-size: 52px;
+        line-height: 56px;
+        padding: 0;
+    }
+
+    .metaverse-title-div {
+        margin-bottom: 96px;
+    }
 }
 
 .team {
@@ -673,10 +652,15 @@ h5 {
     align-items: center;
 }
 
+.team-title > img{
+    pointer-events: none;
+    user-select: none;
+}
+
 .team-peoples {
     display: flex;
     margin-top: 80px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     flex-direction: row;
     justify-content: center;
     justify-items: center;
@@ -746,13 +730,14 @@ h5 {
 }
 
 .cta-head {
-    max-width: 368px;
+    max-width: 300px;
     color: #fff;
-    text-align: left;
-    font-size: 32px;
-    line-height: 32px;
+    text-align: center;
+    font-size: 48px;
+    line-height: 56px;
     text-shadow: -7px 6px 0 rgba(0, 0, 0, .8);
     padding: 0 20px;
+    margin: 0;
 }
 
 .cta-image {
@@ -760,6 +745,8 @@ h5 {
     height: auto;
     min-height: 350px;
     object-fit: cover;
+    pointer-events: none;
+    user-select: none;
 }
 
 @media (--lg) {
@@ -768,6 +755,8 @@ h5 {
     }
 
     .cta-head {
+        max-width: 368px;
+        text-align: left;
         font-size: 64px;
         line-height: 72px;
         padding: 0;
@@ -861,11 +850,6 @@ h5 {
     text-decoration: underline;
 }
 
-.link-block-2 {
-    display: flex;
-    justify-content: center;
-}
-
 .video-with-border {
     position: relative;
     width: calc(100% - 40px);
@@ -880,6 +864,8 @@ h5 {
     position: absolute;
     width: 121%;
     z-index: 2;
+    pointer-events: none;
+    user-select: none;
 }
 
 .video-thumbnail {
@@ -892,6 +878,7 @@ h5 {
 .video-play-button {
     position: absolute;
     z-index: 3;
+    user-select: none;
 }
 
 .footer-rd-1 > a:hover > *,
