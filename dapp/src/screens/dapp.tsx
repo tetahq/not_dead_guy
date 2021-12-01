@@ -4,8 +4,10 @@ import Flickity from 'react-flickity-component'
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player'
 import { AnimationOnScroll } from 'react-animation-on-scroll'
+import useMedia from '../hooks/useMedia'
 
 export default function Dapp() {
+    const isMobile = useMedia('(max-width: 1024px)')
     const [isPlayStory, setPlayStory] = useState<boolean | undefined>(undefined)
     const [isPlayMetaverse, setPlayMetaverse] = useState<boolean | undefined>(undefined)
     return (
@@ -24,7 +26,7 @@ export default function Dapp() {
                     </div>
                 </div>
             </AnimationOnScroll>
-            <AnimationOnScroll animateIn='animate__zoomIn'>
+            <AnimationOnScroll animateIn='animate__fadeIn'>
                 <div className='story-container'>
                     <div className='_2nd-title'>
                         <div className='_2nd-title-text'>
@@ -45,35 +47,45 @@ export default function Dapp() {
                     </div>
                 </div>
             </AnimationOnScroll>
-            <AnimationOnScroll animateIn='animate__zoomIn'>
-                <div className='roadmap-container'>
-                    <div className='roadmap-title-div'>
+
+            <div className='roadmap-container'>
+                <div className='roadmap-title-div'>
+                    <AnimationOnScroll animateIn='animate__fadeIn'>
                         <h1 className='heading-2'>Roadmap Summary</h1>
-                        <img src='/images/nuclei.png' alt='' className='nuclei' />
-                    </div>
-                    <img src='/images/roadmap-bg-r.png' alt='' className='roadmap-bg-r' />
-                    <a href='/documents/NDGWhitepaper.pdf' target='_blank' className='link-block w-inline-block'>
+                    </AnimationOnScroll>
+                    <img src='/images/nuclei.png' alt='' className='nuclei' />
+                </div>
+                <img src='/images/roadmap-bg-r.png' alt='' className='roadmap-bg-r' />
+                <AnimationOnScroll animateIn='animate__zoomIn' className='link-block w-inline-block'>
+                    <a href='/documents/NDGWhitepaper.pdf' target='_blank'>
                         <div className='text-block-2'>White Paper</div>
                     </a>
-                    <div className='phase-grid'>
+                </AnimationOnScroll>
+                <div className='phase-grid'>
+                    <AnimationOnScroll animateIn='animate__zoomIn'>
                         <div className='phase-div'>
                             <div className='phase-title'>Phase 1</div>
                             <div className='seperator' />
                             <div className='body-m'>10% of every minting fee is reflected back to existing NDG holders and can be claimed at any time.</div>
                         </div>
+                    </AnimationOnScroll>
+                    <AnimationOnScroll animateIn='animate__zoomIn' delay={!isMobile ? 500 : 0}>
                         <div className='phase-div'>
                             <div className='phase-title'>Phase 2</div>
                             <div className='seperator' />
                             <div className='body-m'>Meeting with our early supporters on the metaverse. We will discuss the future of NDG.</div>
                         </div>
+                    </AnimationOnScroll>
+                    <AnimationOnScroll animateIn='animate__zoomIn' delay={!isMobile ? 1000 : 0}>
                         <div className='phase-div'>
                             <div className='phase-title'>Phase 3</div>
                             <div className='seperator' />
                             <div className='body-m'>Introducing $NDG Token. You earn $NDG for your time spent in the Metaverse.</div>
                         </div>
-                    </div>
+                    </AnimationOnScroll>
                 </div>
-            </AnimationOnScroll>
+            </div>
+
             <AnimationOnScroll animateIn='animate__fadeIn'>
                 <Flickity className='slider'
                           options={{
@@ -102,12 +114,17 @@ export default function Dapp() {
                     <img src='/images/nft/4.2-Groom.jpg' width='400' alt='' className='image-3' />
                 </Flickity>
             </AnimationOnScroll>
-            <AnimationOnScroll animateIn='animate__zoomIn'>
-                <div className='tokenomics'>
+
+            <div className='tokenomics'>
+                <AnimationOnScroll animateIn='animate__fadeIn'>
                     <div className='tokenomics-title'>
                         <h1 className='heading-2'>Tokenomics</h1><img src='/images/purple-vector.svg' alt='' className='image-6' />
                     </div>
                     <div className='body-button'>The transaction fee from market sales will be redistributed to our community.</div>
+                </AnimationOnScroll>
+
+
+                <AnimationOnScroll animateIn='animate__fadeInUp'>
                     <div className='div-block-2 tokenomics-wrapper'>
                         <div className='tokenomics-share'>
                             <div className='tokenomics-1'>
@@ -131,9 +148,9 @@ export default function Dapp() {
 
                         <img src='/images/seperator-tokenomics.png' alt='' className='seperator-tokenomics' />
                     </div>
-                </div>
-            </AnimationOnScroll>
-            <AnimationOnScroll animateIn='animate__zoomIn'>
+                </AnimationOnScroll>
+            </div>
+            <AnimationOnScroll animateIn='animate__fadeIn'>
                 <div className='metaverse-contain'>
                     <div className='metaverse-title-div'>
                         <h3 className='heading-3'>Have you ever thought of being born at the beginning of the world and starting over?</h3>
@@ -150,7 +167,7 @@ export default function Dapp() {
                     </div>
                 </div>
             </AnimationOnScroll>
-            <AnimationOnScroll animateIn='animate__zoomIn'>
+            <AnimationOnScroll animateIn='animate__fadeIn'>
                 <div className='team'>
                     <div className='team-title'>
                         <h1 className='heading margin-4px'>Team</h1><img src='/images/pink-vector.svg' alt='' />
@@ -200,7 +217,7 @@ export default function Dapp() {
                     <img className='cta-image' src='/images/footer-top.png' alt='' />
                 </div>
             </AnimationOnScroll>
-            <AnimationOnScroll animateIn='animate__fadeInDown'>
+            <AnimationOnScroll animateIn={isMobile ? 'animate__pulse' :'animate__fadeInDown'}>
                 <div className='footer'>
                     <div className='div-block-5'>
                         <div className='div-block-4'>
