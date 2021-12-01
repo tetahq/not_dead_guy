@@ -489,6 +489,15 @@ h5 {
     padding-left: 80px;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+
+.tokenomics-bg-r {
+    position: absolute;
+    right: 0;
+    top: -190px;
+    width: 350px;
+    z-index: -1;
 }
 
 .image-3 {

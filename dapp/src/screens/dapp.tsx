@@ -15,14 +15,14 @@ export default function Dapp() {
             <AnimationOnScroll animateIn='animate__fadeIn'>
                 <div className='hero-container'>
                     <div className='hero'>
-                        <img src='/images/background.png' alt='' className='bg-image' />
-                        <img src='/images/background-mobile.png' alt='' className='bg-image-mobile' />
+                        <img src='/images/background.jpg' alt='' className='bg-image' />
+                        <img src='/images/background-mobile.jpg' alt='' className='bg-image-mobile' />
                         <img src='/images/background-mask.png' alt='' className='bg-image-mask' />
                         <div className='hero-right-area'>
                             <h1 className='hero-title'>NotDeadGuy NFT for the metaverse</h1>
                             <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer'><img src='/images/discord-button.png' alt='' className='button' /></a>
                         </div>
-                        <img src='/images/particle.svg' alt='' className='particul' />
+                        <img src='/images/particle.png' alt='' className='particul' />
                     </div>
                 </div>
             </AnimationOnScroll>
@@ -42,7 +42,7 @@ export default function Dapp() {
                         {/*<Video src={'/videos/story.mp4'} isPlay={isPlayStory} />*/}
                         <img src='/images/video-border.png' alt='' />
 
-                        {!isPlayStory && <img className='video-thumbnail' src='/images/video-story-thumb.png' alt='' />}
+                        {!isPlayStory && <img className='video-thumbnail' src='/images/video-story-thumb.jpg' alt='' />}
                         {!isPlayStory && <img className='video-play-button' src='/images/video-play.png' alt='' />}
                     </div>
                 </div>
@@ -122,9 +122,9 @@ export default function Dapp() {
                     </div>
                     <div className='body-button'>The transaction fee from market sales will be redistributed to our community.</div>
                 </AnimationOnScroll>
+                <img src='/images/tokenomics-bg-r.png' alt='' className='tokenomics-bg-r'/>
 
-
-                <AnimationOnScroll animateIn='animate__fadeInUp'>
+                <AnimationOnScroll animateIn={isMobile ? 'animate__fadeIn' : 'animate__fadeInUp'}>
                     <div className='div-block-2 tokenomics-wrapper'>
                         <div className='tokenomics-share'>
                             <div className='tokenomics-1'>
@@ -162,7 +162,7 @@ export default function Dapp() {
                         <ReactPlayer url='/videos/metaverse.mp4' playing={isPlayMetaverse} width={'100%'} height={'auto'} loop playsinline />
                         <img src='/images/video-border.png' alt='' />
 
-                        {!isPlayMetaverse && <img className='video-thumbnail' src='/images/video-metaverse-thumb.png' alt='' />}
+                        {!isPlayMetaverse && <img className='video-thumbnail' src='/images/video-metaverse-thumb.jpg' alt='' />}
                         {!isPlayMetaverse && <img className='video-play-button' src='/images/video-play.png' alt='' />}
                     </div>
                 </div>
