@@ -209,7 +209,7 @@ export default function Dapp() {
             <AnimationOnScroll animateOnce animateIn='animate__fadeIn'>
                 <div className='cta'>
                     <div className='cta-wrapper'>
-                        <h1 className='cta-head'>To build better one</h1>
+                        <h1 className='cta-head'>To build<br/>a better one</h1>
                         <a href='https://discord.gg/mHTpcF4yzU' target='_blank' rel='noreferrer' className='link-block'>
                             <div className='text-block-2'>Join Discord</div>
                         </a>
