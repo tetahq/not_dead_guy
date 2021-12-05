@@ -169,7 +169,7 @@ h5 {
     align-items: center;
 }
 
-@media(--lg){
+@media (--lg) {
     .story-container {
         margin: 108px auto 0 auto;
     }
@@ -326,12 +326,6 @@ h5 {
     user-select: none;
 }
 
-.roadmap-bg-r {
-    display: none;
-    pointer-events: none;
-    user-select: none;
-}
-
 .phase-grid {
     display: grid;
     margin-top: 32px;
@@ -350,15 +344,6 @@ h5 {
 
     .phase-grid > *:nth-child(2) {
         margin-top: 92px;
-    }
-
-    .roadmap-bg-r {
-        display: block;
-        position: absolute;
-        right: 0;
-        top: -220px;
-        z-index: -1;
-        width: 300px;
     }
 
     .nuclei {
@@ -462,16 +447,6 @@ h5 {
     position: relative;
 }
 
-.tokenomics-bg-r {
-    pointer-events: none;
-    user-select: none;
-    position: absolute;
-    right: 0;
-    top: -190px;
-    width: 350px;
-    z-index: -1;
-}
-
 .image-3 {
     display: block;
     width: 400px;
@@ -527,7 +502,7 @@ h5 {
         z-index: -1;
     }
 
-    .tokenomics{
+    .tokenomics {
         padding: 0 80px;
     }
 
@@ -624,12 +599,12 @@ h5 {
     text-align: center;
 }
 
-@media (--lg){
+@media (--lg) {
     .metaverse-contain {
         margin: 108px auto 0 auto;
     }
 
-    .heading-3{
+    .heading-3 {
         font-size: 52px;
         line-height: 56px;
         padding: 0;
@@ -652,7 +627,7 @@ h5 {
     align-items: center;
 }
 
-.team-title > img{
+.team-title > img {
     pointer-events: none;
     user-select: none;
 }

@@ -55,7 +55,6 @@ export default function Dapp() {
                     </AnimationOnScroll>
                     <img src='/images/nuclei.png' alt='' className='nuclei' />
                 </div>
-                <img src='/images/roadmap-bg-r.png' alt='' className='roadmap-bg-r' />
                 <AnimationOnScroll animateOnce animateIn='animate__zoomIn' className='link-block w-inline-block'>
                     <a href='/documents/NDGWhitepaper.pdf' target='_blank'>
                         <div className='text-block-2'>White Paper</div>
@@ -122,7 +121,6 @@ export default function Dapp() {
                     </div>
                     <div className='body-button'>The transaction fee from market sales will be redistributed to our community.</div>
                 </AnimationOnScroll>
-                <img src='/images/tokenomics-bg-r.png' alt='' className='tokenomics-bg-r' />
 
                 <AnimationOnScroll animateOnce animateIn={isMobile ? 'animate__fadeIn' : 'animate__fadeInUp'}>
                     <div className='div-block-2 tokenomics-wrapper'>
