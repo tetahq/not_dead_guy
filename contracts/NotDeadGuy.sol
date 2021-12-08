@@ -338,6 +338,9 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
         uint256 shareholder2Cut = totalBalance / 100 * _shares.shareHolder2Cut;
         Address.sendValue(payable(_shares.shareHolder2Address), shareholder2Cut);
     
+        uint256 shareholder3Cut = totalBalance / 100 * _shares.shareHolder3Cut;
+        Address.sendValue(payable(_shares.shareHolder3Address), shareholder3Cut);
+    
         uint256 developer1Cut = totalBalance / 100 * _shares.developer1Cut;
         Address.sendValue(payable(_shares.developer1Address), developer1Cut);
     
