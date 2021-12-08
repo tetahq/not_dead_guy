@@ -39,12 +39,14 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
     struct Shares {
         address shareHolder1Address;
         address shareHolder2Address;
+        address shareHolder3Address;
         address developer1Address;
         address developer2Address;
         address developer3Address;
     
         uint16 shareHolder1Cut;
         uint16 shareHolder2Cut;
+        uint16 shareHolder3Cut;
         uint16 developer1Cut;
         uint16 developer2Cut;
         
@@ -83,7 +85,7 @@ contract NotDeadGuy is ERC721, ERC721Enumerable, Ownable {
     
         _constants = Constants(0.088 ether, 0.001 ether, 10000, 20);
     
-        _shares = Shares(address(0x48F10bE806CBD87E725Ca85Fe94555f126BA156D), address(0x127b46b71a3c385A50e57f8E29c68483084c51f6), address(0xBB1a24B07e832579b801206b77865D3944427db1), address(0x8B894a78E6f7739eEc7Ca32772F31a54361240C1), address(0x3C2158ab53c030dBA9345E6f7bb55276944aFBA7), 5, 10, 35, 25, 33, 34, 1, 2, 2, 3 );
+        _shares = Shares(address(0x48F10bE806CBD87E725Ca85Fe94555f126BA156D), address(0x127b46b71a3c385A50e57f8E29c68483084c51f6), address(0x6eb49672B26AC890219205dEBCc5f112188cB701), address(0xBB1a24B07e832579b801206b77865D3944427db1), address(0x8B894a78E6f7739eEc7Ca32772F31a54361240C1), address(0x3C2158ab53c030dBA9345E6f7bb55276944aFBA7), 5, 10, 10, 31, 22, 33, 34, 1, 2, 2, 3 );
         
         progresses = SystemProgresses(true, Progress.NOT_STARTED, Progress.NOT_STARTED, Progress.NOT_STARTED);
     }
