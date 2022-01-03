@@ -647,7 +647,7 @@ h5 {
 
 .tp-1 {
     display: flex;
-    max-width: 180px;
+    max-width: 160px;
     flex-direction: column;
     text-decoration: none;
 }
@@ -680,7 +680,7 @@ h5 {
 
 @media (--lg) {
     .grid-2 {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
 

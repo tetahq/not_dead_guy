@@ -182,6 +182,10 @@ export default function Dapp() {
                     </div>
                     <div className='w-layout-grid grid-2'>
                         <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
+                            <h5 className='avatar-name'>Tolga</h5>
+                            <h5 className='avatar-title'>PRODUCT DEV.</h5>
+                        </a>
+                        <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
                             <h5 className='avatar-name'>Oguz</h5>
                             <h5 className='avatar-title'>B. DEVELOPER</h5>
                         </a>
