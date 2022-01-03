@@ -633,23 +633,26 @@ h5 {
 }
 
 .team-peoples {
-    display: flex;
+    display: grid;
     margin-top: 80px;
     margin-bottom: 32px;
-    flex-direction: row;
     justify-content: center;
     justify-items: center;
     align-items: center;
-    grid-auto-columns: 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
 }
 
 .tp-1 {
     display: flex;
-    max-width: 160px;
+    max-width: 170px;
     flex-direction: column;
     text-decoration: none;
+}
+
+.tp-1-empty {
+    display: none;
 }
 
 .tp-1.rm-40px {
@@ -670,17 +673,19 @@ h5 {
     line-height: 24px;
     font-weight: 400;
     letter-spacing: 0.24em;
+    white-space: pre;
 }
 
-.grid-2 {
-    justify-items: center;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-}
 
 @media (--lg) {
-    .grid-2 {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    .team-peoples {
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+    }
+
+    .tp-1-empty {
+        display: block;
     }
 }
 

@@ -171,7 +171,12 @@ export default function Dapp() {
                         <h1 className='heading margin-4px'>Team</h1><img src='/images/pink-vector.svg' alt='' />
                     </div>
                     <div className='team-peoples'>
-                        <a href='#' className='tp-1 rm-40px w-inline-block'><img src='/images/avatar-f.svg' alt='' className='avatar' />
+                        <div className='tp-1-empty'/>
+                        <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
+                            <h5 className='avatar-name'>Tolga</h5>
+                            <h5 className='avatar-title'>PRODUCT DEV.</h5>
+                        </a>
+                        <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-f.svg' alt='' className='avatar' />
                             <h5 className='avatar-name'>Oxana</h5>
                             <h5 className='avatar-title'>DESIGNER</h5>
                         </a>
@@ -179,12 +184,7 @@ export default function Dapp() {
                             <h5 className='avatar-name'>Can</h5>
                             <h5 className='avatar-title'>DESIGNER</h5>
                         </a>
-                    </div>
-                    <div className='w-layout-grid grid-2'>
-                        <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
-                            <h5 className='avatar-name'>Tolga</h5>
-                            <h5 className='avatar-title'>PRODUCT DEV.</h5>
-                        </a>
+                        <div className='tp-1-empty'/>
                         <a href='#' className='tp-1 w-inline-block'><img src='/images/avatar-m.svg' alt='' className='avatar' />
                             <h5 className='avatar-name'>Oguz</h5>
                             <h5 className='avatar-title'>B. DEVELOPER</h5>
